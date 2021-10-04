@@ -19,8 +19,8 @@ export default function Nav() {
   // on scroll
   const onWindowScroll = useCallback(() => {
     const offsetY = window.scrollY;
-    if (offsetY < 60) {
-      navRef.current.style.backgroundColor = "#eae6ff";
+    if (offsetY < 70) {
+      navRef.current.style.backgroundColor = "transparent";
       navRef.current.style.boxShadow = "none";
     } else {
       navRef.current.style.backgroundColor = "#fff";
