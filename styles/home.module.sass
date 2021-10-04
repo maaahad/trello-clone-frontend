@@ -1,0 +1,41 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "theme"
+
+.container
+  min-height: 100vh
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: stretch
+  // height: 100vh
+  position: relative
+
+.header
+  height: 68px
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+
+.main
+  padding: 5rem 0
+  flex: 1
+  display: flex
+  flex-direction: column
+  justify-content: stretch
+  align-items: flex-start
+  @include theme.landing-hero-linear-grad
+
+.hero
+  display: flex
+  flex-direction: row nowrap
+  align-items: center
+  justify-content: space-between
+
+.footer
+  width: 100%
+  border-top: 1px solid #eaeaea
+  display: flex
+  justify-content: center
+  align-items: center

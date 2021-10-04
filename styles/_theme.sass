@@ -1,0 +1,35 @@
+// --------------------------------------------------
+// This is the theme partials
+// text-color
+$trello-blue: #0065ff
+$trello-blue-hover: #0051cc
+$trello-white: #fff
+$trello-shadow-grey: rgba(0,0,0,0.3)
+
+// button-color
+
+// background-color
+$bg-landing-primary: #fff
+$bg-landing-secondary: #eae6ff
+
+// border-color
+
+// typography
+
+// breakpoints for landing page 
+$breakpoint-landing-md: 768px
+$breakpoint-landing-large: 992px
+
+// --------------------------------------------------
+// mixins
+
+// typography
+
+// shadows
+@mixin landing-shadow-scroll($shadowColor:$trello-shadow-grey )
+    box-shadow: 0 0 10px rgba(0,0,0,0.3)
+
+// gradient
+@mixin landing-hero-linear-grad
+    background: $bg-landing-primary
+    background: linear-gradient(0deg, rgba($bg-landing-primary,1) 0%, rgba($bg-landing-secondary,1) 99%)

@@ -1,0 +1,59 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.nav
+    padding: 16px
+    height: 100%
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: space-between
+    background-color: theme.$bg-landing-secondary
+    transition: all 1s ease
+
+.logo
+    position: relative
+    height: 36px
+    width: 126px
+
+.account
+    display: flex
+    flex-direction: row nowrap
+    align-items: center
+    justify-content: flex-end
+
+    & > a
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        height: 100%
+        padding: .25rem .5rem
+        font-size: 1.1rem
+        line-height: 1.5
+        border: 1px solid transparent
+        border-radius: .2rem
+        transition: all .15s ease-in-out
+        white-space: nowrap
+
+    & > * + *
+        margin-inline-start: 5px
+
+.login
+    color: theme.$trello-blue
+    background-color: transparent
+    font-weight: 400
+
+    &:hover, &:focus
+        cursor: pointer
+        color: theme.$trello-blue-hover
+        text-decoration: underline
+
+.signup
+    color: theme.$trello-white
+    background-color: theme.$trello-blue
+    font-weight: 500
+
+    &:hover
+        cursor: pointer
+        background-color: theme.$trello-blue-hover
