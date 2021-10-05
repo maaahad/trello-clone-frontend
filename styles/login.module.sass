@@ -1,0 +1,22 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "theme"
+
+.loginContainer
+    height: 100vh
+
+    main
+        height: 100%
+        display: flex
+        flex-flow: row nowrap
+        align-items: flex-end
+        justify-content: space-between
+
+        & > * + *
+            margin-inline-start: 20px
+
+        .loginLeft, .loginRight
+            width: 25vw
+            height: 25vw
+            // position relative is for Image from nextjs
+            position: relative

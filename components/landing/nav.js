@@ -19,7 +19,7 @@ export default function Nav() {
   // on scroll
   const onWindowScroll = useCallback(() => {
     const offsetY = window.scrollY;
-    if (offsetY < 70) {
+    if (offsetY < 60) {
       navRef.current.style.backgroundColor = "transparent";
       navRef.current.style.boxShadow = "none";
     } else {
@@ -40,7 +40,7 @@ export default function Nav() {
       </div>
       <div className={styles.account}>
         {/* ||todo href should be changed ot Log in page */}
-        <Link href="/" passHref>
+        <Link href="/login" passHref>
           <a className={styles.login}>Log in</a>
         </Link>
         {/* ||todo href should be change to sign up page */}

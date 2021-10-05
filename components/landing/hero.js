@@ -2,7 +2,7 @@
 // import
 
 // react
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 // nextjs
 import Image from "next/image";
@@ -14,6 +14,10 @@ import Link from "next/link";
 import styles from "../../styles/landing/hero.module.sass";
 
 export default function Hero() {
+  const [email, setEmail] = useState("");
+  const onEmailInputChange = (event) => {
+    setEmail(event.target.value);
+  };
   return (
     <div className={styles.heroContainer}>
       {/* < 768px */}
@@ -27,7 +31,12 @@ export default function Hero() {
         {/* input for >= 768px */}
         <form className={styles.signupForm}>
           <div className={styles.signupEmail}>
-            <input type="email" placeholder="Email" />
+            <input
+              type="email"
+              value={email}
+              placeholder="Email"
+              onChange={onEmailInputChange}
+            />
           </div>
           <div className={styles.signupSubmit}>
             <button type="button">Sign up-it's free!</button>

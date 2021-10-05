@@ -5,6 +5,7 @@ $trello-blue: #0065ff
 $trello-blue-hover: #0051cc
 $trello-white: #fff
 $trello-text-blackish: #091e42
+$trello-text-input: #495057
 
 // button-color
 
@@ -13,7 +14,7 @@ $bg-landing-primary: #fff
 $bg-landing-secondary: #eae6ff
 
 // border-color
-
+$border-input-grey: #ccd4da
 // typography
 
 // shadows
@@ -35,6 +36,9 @@ $zindex-nav: 111
 // shadows
 @mixin landing-shadow-scroll($shadowColor:$trello-shadow-grey )
     box-shadow: 0 0 10px rgba(0,0,0,0.3)
+
+@mixin button-hover-focus-shadow
+    box-shadow: 0 0 0 .2rem rgba(0,101,255,0.5)
 
 // gradient
 @mixin landing-hero-linear-grad
