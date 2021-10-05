@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Trello</title>
+        <title>Trello - Clone - By - Muhammed Ahad</title>
         <meta
           name="description"
           content="This is a clone of Trello - For Training Purpose only. "
@@ -31,9 +31,9 @@ export default function Home() {
       </header>
       {/* main */}
       <main className={styles.main}>
-        <div className={styles.hero}>
+        <section className={styles.hero}>
           <Hero />
-        </div>
+        </section>
       </main>
 
       {/* footer */}

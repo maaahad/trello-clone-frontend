@@ -17,6 +17,7 @@
   top: 0
   left: 0
   width: 100%
+  z-index: theme.$zindex-nav
 
 .main
   flex: 1
@@ -26,12 +27,15 @@
   align-items: flex-start
 
 .hero
-  padding: 5rem 0
   @include theme.landing-hero-linear-grad
-
+  width: 100%
+  overflow-x: hidden
 .footer
   width: 100%
   border-top: 1px solid #eaeaea
   display: flex
   justify-content: center
   align-items: center
+
+// --------------------------------------------------
+// media conditions

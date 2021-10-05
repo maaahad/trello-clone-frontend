@@ -36,10 +36,11 @@ export default function Hero() {
       </div>
       {/* >=992px */}
       <div className={styles.heroRight}>
-        <img
-          src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/spirit/hero/6a3ccd8e5c9a0e8ebea4235d12da6b24/hero.png"
+        <Image
+          src="/landing/hero.png"
           alt="Trello Hero Image"
-          style={{ width: "100px", height: "auto" }}
+          layout="fill"
+          objectFit="contain"
         />
       </div>
     </div>
