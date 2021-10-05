@@ -4,7 +4,7 @@
 $trello-blue: #0065ff
 $trello-blue-hover: #0051cc
 $trello-white: #fff
-$trello-shadow-grey: rgba(0,0,0,0.3)
+$trello-text-blackish: #091e42
 
 // button-color
 
@@ -16,9 +16,12 @@ $bg-landing-secondary: #eae6ff
 
 // typography
 
+// shadows
+$trello-shadow-grey: rgba(0,0,0,0.3)
+
 // breakpoints for landing page 
 $breakpoint-landing-md: 768px
-$breakpoint-landing-large: 992px
+$breakpoint-landing-lg: 992px
 
 // --------------------------------------------------
 // mixins
@@ -32,4 +35,5 @@ $breakpoint-landing-large: 992px
 // gradient
 @mixin landing-hero-linear-grad
     background: $bg-landing-primary
-    background: linear-gradient(0deg, rgba($bg-landing-primary,1) 0%, rgba($bg-landing-secondary,1) 99%)
+    background: linear-gradient(0deg, $bg-landing-primary, $bg-landing-secondary 100%)
+    // background: linear-gradient(0deg, rgba($bg-landing-primary,1) 0%, rgba($bg-landing-secondary,1) 99%)
