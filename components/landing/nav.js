@@ -44,7 +44,7 @@ export default function Nav() {
           <a className={styles.login}>Log in</a>
         </Link>
         {/* ||todo href should be change to sign up page */}
-        <Link href="/" passHref>
+        <Link href="/signup" passHref>
           <a className={styles.signup}>Sign up</a>
         </Link>
       </div>

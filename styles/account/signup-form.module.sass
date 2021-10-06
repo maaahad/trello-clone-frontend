@@ -1,0 +1,40 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.container
+    height: auto
+    width: 100vw
+    display: flex
+    flex-flow: column nowrap
+    align-items: center
+    justify-content: flex-start
+    background-color: theme.$bg-primary
+    padding: 15px 0 20px 0
+    & > * + *
+        margin-block-start: 50px
+
+.logoContainer
+    position: relative
+    width: 200px
+    height: 43px
+    display: flex
+    align-items: center
+    justify-conent: center
+
+.formContainer
+    align-self: stretch
+    background-color: theme.$bg-primary
+    // || testing with height
+    height: 500px
+
+// --------------------------------------------------
+// media condition
+@media screen and (min-width: 641px)
+    .container
+        width: 400px
+        background-color: transparent
+        padding: 40px 0 30px 0
+
+    .formContainer
+        @include theme.account-form-shadow

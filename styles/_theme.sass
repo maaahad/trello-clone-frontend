@@ -10,8 +10,10 @@ $trello-text-input: #495057
 // button-color
 
 // background-color
+$bg-primary: #fff
 $bg-landing-primary: #fff
 $bg-landing-secondary: #eae6ff
+$bg-form-background: #f9fafc
 
 // border-color
 $border-input-grey: #ccd4da
@@ -27,6 +29,8 @@ $breakpoint-landing-xl: 1200px
 
 // z-index
 $zindex-nav: 111
+$zindex-form: 1
+$zindex-background: -1
 
 // --------------------------------------------------
 // mixins
@@ -39,6 +43,9 @@ $zindex-nav: 111
 
 @mixin button-hover-focus-shadow
     box-shadow: 0 0 0 .2rem rgba(0,101,255,0.5)
+
+@mixin account-form-shadow
+    box-shadow: rgba(0,0,0,0.1) 0 0 10px
 
 // gradient
 @mixin landing-hero-linear-grad
