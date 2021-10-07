@@ -7,6 +7,8 @@ import Image from "next/image";
 // react-icons
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { BiChevronDown } from "react-icons/bi";
+import { VscChevronDown } from "react-icons/vsc";
 
 // in-house components
 
@@ -14,7 +16,7 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import styles from "../../styles/account/signup-form.module.sass";
 
 function Form() {
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
   const onEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -25,6 +27,7 @@ function Form() {
         value={email}
         placeholder="Enter email"
         onChange={onEmailChange}
+        required
       />
       <p className={styles.policy}>
         By signing up, you confirm that you've read and accepted our{" "}
@@ -89,6 +92,8 @@ export default function SignupForm() {
       </div>
       <div className={styles.languageChoice}>
         <LanguageSelect />
+        {/* we add a custom caret */}
+        <VscChevronDown />
       </div>
       <footer className={styles.footer}>
         This will be the footer...This will have a complete separate component
