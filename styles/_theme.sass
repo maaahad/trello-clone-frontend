@@ -1,6 +1,7 @@
 // --------------------------------------------------
 // This is the theme partials
 // text-color
+$text-color-primary: #4d4d4d
 $trello-blue: #0065ff
 $trello-blue-hover: #0051cc
 $trello-blue-focus: #4c9aff
@@ -12,12 +13,17 @@ $trello-anchor-text-color-primary: #0052cc
 $trello-form-text-primary: #5E6C84
 
 // button-color
+$text-color-button-inactive: #8c8c8c
+$text-color-button: #505f79
 
 // background-color
 $bg-primary: #fff
 $bg-landing-primary: #fff
 $bg-landing-secondary: #eae6ff
 $bg-form-background: #f9fafc
+$bg-button-inactive: #e2e4e6
+$bg-button-hover: #F9FAFC
+$bg-divider: #cccccc
 
 // border-color
 $border-input-grey: #ccd4da
@@ -51,6 +57,8 @@ $zindex-background: -1
 @mixin account-form-shadow
     box-shadow: rgba(0,0,0,0.1) 0 0 10px
 
+@mixin button-shadow
+    box-shadow: rgba(0,0,0,0.2) 1px 1px 5px 0
 // gradient
 @mixin landing-hero-linear-grad
     background: $bg-landing-primary

@@ -4,6 +4,10 @@ import React, { useState } from "react";
 // nextjs
 import Image from "next/image";
 
+// react-icons
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+
 // in-house components
 
 // sass styles
@@ -27,32 +31,42 @@ function Form() {
         <a href="/signup">Terms of Service</a> and{" "}
         <a href="/signup">Privacy Policy</a>.
       </p>
-      <button type="button">Continue</button>
+      <button type="button" className={styles.continueButton}>
+        Continue
+      </button>
     </form>
+  );
+}
+
+function OAuthButton({ label, Icon }) {
+  return (
+    <button type="button" className={styles.oauthButton}>
+      <Icon />
+      <span>{label}</span>
+    </button>
   );
 }
 
 function ThirdPartyAuth() {
   return (
-    <div>
-      <div>
-        <button type="button">Continue with Google</button>
-      </div>
-      <div>
-        <button type="button">Continue with Facebook</button>
-      </div>
-      <div>
-        <button type="button">Continue with Apple</button>
-      </div>
+    <div className={styles.thirdpartyAuth}>
+      <OAuthButton label="Continue with Google" Icon={FcGoogle} />
+      <OAuthButton label="Continue with Facebook" Icon={FaFacebookF} />
+      <OAuthButton label="Continue with Linkedin" Icon={FaLinkedinIn} />
     </div>
   );
 }
 
 function LanguageSelect() {
+  const [language, setLanguage] = useState();
+  const onLanguageChange = (event) => {
+    setLanguage(event.target.value);
+  };
   return (
-    <select>
-      <option value="englighUK">English(UK)</option>
-      <option value="englighUK">English(US)</option>
+    <select value={language} onChange={onLanguageChange}>
+      <option value="english-uk">English (UK)</option>
+      <option value="english-us">English (US)</option>
+      <option value="swedish">Swedish</option>
     </select>
   );
 }
@@ -66,10 +80,12 @@ export default function SignupForm() {
       <div className={styles.formContainer}>
         <h1>Sign up for your account</h1>
         <Form />
-        <div>OR</div>
+        <div className={styles.or}>OR</div>
         <ThirdPartyAuth />
-        <div>horizontal line</div>
-        <a href="/signin">Already have an account? Log In</a>
+        <div className={styles.horizontalDivider}></div>
+        <a href="/signin" className={styles.anchorTag}>
+          Already have an account? Log In
+        </a>
       </div>
       <div className={styles.languageChoice}>
         <LanguageSelect />
