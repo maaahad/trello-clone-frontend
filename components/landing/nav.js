@@ -18,6 +18,7 @@ export default function Nav() {
   // this callback is responsible to change the background and box-shadow of nav
   // on scroll
   const onWindowScroll = useCallback(() => {
+    if (!navRef.current) return;
     const offsetY = window.scrollY;
     if (offsetY < 60) {
       navRef.current.style.backgroundColor = "transparent";

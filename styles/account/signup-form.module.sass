@@ -39,6 +39,9 @@
 .form
     font-weight: 300
     line-height: 1.5
+    & > input + input
+        margin: 20px 0
+
     & > input
         width: 100%
         height: 44px
@@ -54,13 +57,13 @@
             border-color: theme.$trello-blue-focus
 
         &:invalid
-            & ~ button
+            & ~ .continueButton
                 background-color: theme.$bg-button-inactive
                 color: theme.$text-color-button-inactive
                 &:hover
                     cursor: auto
         &:valid
-            & ~ button
+            & ~ .continueButton
                 background-color: theme.$bg-button-active
                 color: theme.$trello-white
                 &:hover
@@ -83,13 +86,20 @@
             cursor: pointer
             text-decoration: 1px underline theme.$trello-anchor-text-color-primary
 
-.continueButton
+.continueButton, .signupButton
     width: 100%
     height: 40px
     border: none
     border-radius: 6px
     font-weight: bold
     padding: 6px 10px
+
+.signupButton
+    color: theme.$trello-white
+    background-color: theme.$bg-button-active-blue
+    &:hover
+        cursor: pointer
+        background-color: theme.$bg-button-active-hover-blue
 
 .or
     margin: 16px 0
