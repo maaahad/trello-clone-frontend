@@ -10,7 +10,7 @@ import Head from "next/head";
 // in-house components
 import Layout from "../components/layout";
 import FormBackground from "../components/account/form-background";
-import SignupForm from "../components/account/signup-form";
+import SignupTrello from "../components/account/signup-trello";
 
 // sass styles
 import styles from "../styles/signup.module.sass";
@@ -27,7 +27,7 @@ export default function Signup() {
       <div className={styles.signupContainer}>
         <FormBackground />
         <div className={styles.signupFormContainer}>
-          <SignupForm />
+          <SignupTrello />
         </div>
       </div>
     </Layout>

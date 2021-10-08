@@ -7,21 +7,28 @@ import Image from "next/image";
 // react-icons
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { BiChevronDown } from "react-icons/bi";
 import { VscChevronDown } from "react-icons/vsc";
 
 // in-house components
 
-// sass styles
-import styles from "../../styles/account/signup-form.module.sass";
+// in-house hooks
+import { useInput } from "../../lib/hooks";
 
+// sass styles
+import styles from "../../styles/account/signup-trello.module.sass";
+
+// should be moved to its own file
 function Form({ setThirdPartyAuth }) {
-  const [email, setEmail] = useState("");
   const [displayFullnameInput, setDisplayFullnameInput] = useState(false);
 
+  const [emailProps, resetEmail] = useInput("");
+  const [fullnameProps, resetFullname] = useInput("");
+  const [subscriptionProps, resetSubscription] = useInput(false);
+
   const onEmailChange = (event) => {
+    // controlling the display of thirdpartyauth based on user input to email field
     event.target.value ? setThirdPartyAuth(false) : setThirdPartyAuth(true);
-    setEmail(event.target.value);
+    emailProps.onChange(event);
   };
 
   const onSubmitOnContinue = (event) => {
@@ -34,6 +41,9 @@ function Form({ setThirdPartyAuth }) {
     event.preventDefault();
     console.log("I am signing up...");
     // || todo : here we do the ajax request to sign up the user
+    console.log(event.target.elements.email.value);
+    console.log(event.target.elements.name.value);
+    console.log(event.target.elements.subscription.checked);
   };
 
   return (
@@ -43,23 +53,35 @@ function Form({ setThirdPartyAuth }) {
     >
       <input
         type="email"
-        value={email}
+        name="email"
+        value={emailProps.value}
         placeholder="Enter email"
         onChange={onEmailChange}
         required
       />
       {displayFullnameInput && (
         <>
-          <input type="text" placeholder="Enter full name" required />
-          <div>
-            {/* || todo : style checkbox */}
-            <input type="checkbox" id="offer" />
-            <label htmlFor="offer">
+          <input
+            type="text"
+            name="name"
+            value={fullnameProps.value}
+            placeholder="Enter full name"
+            onChange={fullnameProps.onChange}
+            required
+          />
+          <div className={styles.offerSubscription}>
+            <input
+              type="checkbox"
+              name="subscription"
+              checked={subscriptionProps.value}
+              onChange={subscriptionProps.onChange}
+              id="subscription"
+            />
+            <label htmlFor="subscription">
               Yes! Send me news and offers from Atlassian about products,
               events, and more.
             </label>
           </div>
-          {/* use a checkbox with : Yes! Send me news and offers from Atlassian about products, events, and more. */}
         </>
       )}
 
@@ -90,6 +112,7 @@ function OAuthButton({ label, Icon }) {
   );
 }
 
+// should be moved to it's own file
 function ThirdPartyAuth() {
   return (
     <div className={styles.thirdpartyAuth}>
@@ -100,21 +123,21 @@ function ThirdPartyAuth() {
   );
 }
 
+// Should be moved to its's own file
 function LanguageSelect() {
-  const [language, setLanguage] = useState();
-  const onLanguageChange = (event) => {
-    setLanguage(event.target.value);
-  };
+  const [languageProps, ,] = useInput("english-uk");
   return (
-    <select value={language} onChange={onLanguageChange}>
-      <option value="english-uk">English (UK)</option>
+    <select value={languageProps.value} onChange={languageProps.onChange}>
+      <option value="english-uk" selected>
+        English (UK)
+      </option>
       <option value="english-us">English (US)</option>
       <option value="swedish">Swedish</option>
     </select>
   );
 }
 
-export default function SignupForm() {
+export default function SignupTrello() {
   // or and thirdparty auth only visible if the user does not start providing value for email
   const [thirdPartyAuth, setThirdPartyAuth] = useState(true);
 
