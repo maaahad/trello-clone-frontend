@@ -10,6 +10,7 @@ import Image from "next/image";
 // in-house components
 import Nav from "../components/landing/nav";
 import Hero from "../components/landing/hero";
+import TrelloProduct from "../components/landing/trello-product";
 
 // sass styles
 import styles from "../styles/home.module.sass";
@@ -33,6 +34,9 @@ export default function Home() {
       <main className={styles.main}>
         <section className={styles.hero}>
           <Hero />
+        </section>
+        <section className={styles.trelloProduct}>
+          <TrelloProduct />
         </section>
       </main>
 
