@@ -4,8 +4,6 @@
 // react
 
 // nextjs
-import Image from "next/image";
-import Head from "next/head";
 
 // in-house components
 import Layout from "../components/layout";

@@ -23,6 +23,7 @@ function Form({ setThirdPartyAuth }) {
 
   const [emailProps, resetEmail] = useInput("");
   const [fullnameProps, resetFullname] = useInput("");
+  const [passwordProps, resetPassword] = useInput("");
   const [subscriptionProps, resetSubscription] = useInput(false);
 
   const onEmailChange = (event) => {
@@ -31,13 +32,13 @@ function Form({ setThirdPartyAuth }) {
     emailProps.onChange(event);
   };
 
-  const onSubmitOnContinue = (event) => {
+  const onContinueSubmit = (event) => {
     event.preventDefault();
     setDisplayFullnameInput(true);
     setThirdPartyAuth(true);
   };
 
-  const onSubmitOnSignup = (event) => {
+  const onSignupFormSubmit = (event) => {
     event.preventDefault();
     console.log("I am signing up...");
     // || todo : here we do the ajax request to sign up the user
@@ -49,7 +50,7 @@ function Form({ setThirdPartyAuth }) {
   return (
     <form
       className={styles.form}
-      onSubmit={displayFullnameInput ? onSubmitOnSignup : onSubmitOnContinue}
+      onSubmit={displayFullnameInput ? onSignupFormSubmit : onContinueSubmit}
     >
       <input
         type="email"
@@ -67,6 +68,14 @@ function Form({ setThirdPartyAuth }) {
             value={fullnameProps.value}
             placeholder="Enter full name"
             onChange={fullnameProps.onChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            value={passwordProps.value}
+            placeholder="Enter password"
+            onChange={passwordProps.onChange}
             required
           />
           <div className={styles.offerSubscription}>
@@ -157,7 +166,7 @@ export default function SignupTrello() {
           </>
         )}
         <div className={styles.horizontalDivider}></div>
-        <a href="/signin" className={styles.anchorTag}>
+        <a href="/login" className={styles.anchorTag}>
           Already have an account? Log In
         </a>
       </div>

@@ -3,20 +3,14 @@
 @use "theme"
 
 .loginContainer
-    height: 100vh
+    position: relative
 
-    main
-        height: 100%
-        display: flex
-        flex-flow: row nowrap
-        align-items: flex-end
-        justify-content: space-between
-
-        & > * + *
-            margin-inline-start: 20px
-
-        .loginLeft, .loginRight
-            width: 25vw
-            height: 25vw
-            // position relative is for Image from nextjs
-            position: relative
+.loginFormContainer
+    z-index: theme.$zindex-form
+    width: 100vw
+    height: auto
+    background-color: transparent
+    overflow-y: auto
+    display: flex
+    align-items: center
+    justify-content: center
