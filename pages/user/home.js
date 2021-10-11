@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 // react-icons
 
 // in-house components
+import Layout from "../../components/layout";
 
 // in-house hooks
 
@@ -21,8 +22,10 @@ export default function UserHome() {
 
   console.log("Query Parameter : ", router.query);
   return (
-    <div>
-      <div>This is User's ({router.query.email}) home page</div>
-    </div>
+    <Layout title="Boards | Trello" nav={true}>
+      <div>
+        <div>This is User's ({router.query.email}) home page</div>
+      </div>
+    </Layout>
   );
 }

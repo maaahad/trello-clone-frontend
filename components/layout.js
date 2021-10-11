@@ -6,6 +6,7 @@
 import Head from "next/head";
 
 // in-house components
+import Nav from "./header/nav";
 
 // sass styles
 import styles from "../styles/layout.module.sass";
@@ -14,6 +15,7 @@ export default function Layout({
   children,
   title,
   meta = { name: "", content: "" },
+  nav = false,
 }) {
   return (
     <div>
@@ -23,6 +25,11 @@ export default function Layout({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* navigaiton : except for login and signup form */}
+      {nav && (
+        <header className={styles.navContainer}>
+          <Nav />
+        </header>
+      )}
 
       <main>{children}</main>
 
