@@ -33,15 +33,6 @@ function Form({
     emailProps.onChange(event);
   };
 
-  //   const onSubmitLoginForm = (event) => {
-  //     event.preventDefault();
-  //     console.log("I am signing up...");
-  //     // || todo : here we do the ajax request to sign up the user
-  //     console.log(event.target.elements.email.value);
-  //     console.log(event.target.elements.name.value);
-  //     console.log(event.target.elements.subscription.checked);
-  //   };
-
   return (
     <form className={styles.form} onSubmit={onLoginFormSubmit}>
       {!loginWithSSO && (

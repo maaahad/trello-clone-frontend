@@ -50,6 +50,7 @@ function Form({
       `${rootUrl}/account/user/${form.elements.email.value}`,
       "get"
     ).then((user) => {
+      // the above fetch return user or null
       if (user) {
         setDuplicateEmailError(true);
       } else {
@@ -70,17 +71,14 @@ function Form({
       password: form.elements.password.value,
       subscribed: form.elements.subscribed.checked,
     };
+
     jsonFetch(`${rootUrl}/account/user/signup`, "post", body).then(
-      (resBody) => {
-        if (resBody.success) {
-          // route to user home page
-          router.push({
-            pathname: "/user/home",
-            query: { email: form.elements.email.value },
-          });
-        } else {
-          console.error(`[ DATABASE_FETCH_ERROR ] : ${resBody.message}`);
-        }
+      ({ user, workspaces }) => {
+        // route to user home page
+        router.push({
+          pathname: "/user/home",
+          query: { email: user.email, id: user._id },
+        });
       }
     );
   };

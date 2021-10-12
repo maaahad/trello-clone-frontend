@@ -22,7 +22,11 @@ export default function UserHome() {
 
   console.log("Query Parameter : ", router.query);
   return (
-    <Layout title="Boards | Trello" nav={true}>
+    <Layout
+      title="Boards | Trello"
+      nav={true}
+      currentUser={{ email: router.query.email, id: router.query.id }}
+    >
       <div>
         <div>This is User's ({router.query.email}) home page</div>
       </div>

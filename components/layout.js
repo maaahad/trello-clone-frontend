@@ -16,6 +16,7 @@ export default function Layout({
   title,
   meta = { name: "", content: "" },
   nav = false,
+  currentUser = null,
 }) {
   return (
     <div>
@@ -27,7 +28,7 @@ export default function Layout({
       {/* navigaiton : except for login and signup form */}
       {nav && (
         <header className={styles.navContainer}>
-          <Nav />
+          <Nav currentUser={currentUser} />
         </header>
       )}
 
