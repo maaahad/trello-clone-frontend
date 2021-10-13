@@ -137,8 +137,8 @@ function Form({
 
       <p className={styles.policy}>
         By signing up, you confirm that you've read and accepted our{" "}
-        <a href="/signup">Terms of Service</a> and{" "}
-        <a href="/signup">Privacy Policy</a>.
+        <a href="/account/signup">Terms of Service</a> and{" "}
+        <a href="/account/signup">Privacy Policy</a>.
       </p>
       {displayFullnameInput ? (
         <button type="submit" className={styles.signupButton}>
@@ -200,7 +200,7 @@ export default function SignupTrello() {
           <div className={styles.duplicateEmailError}>
             Hey, that email is already in use by another Trello account. You'll
             need to login with Atlassian to use Trello.
-            <Link href="/login" passHref>
+            <Link href="/account/login" passHref>
               <a className={styles.anchorTag}>Log In</a>
             </Link>
           </div>
@@ -218,7 +218,7 @@ export default function SignupTrello() {
           </>
         )}
         <div className={styles.horizontalDivider}></div>
-        <Link href="/login" passHref>
+        <Link href="/account/login" passHref>
           <a className={styles.anchorTag}>Already have an account? Log In</a>
         </Link>
       </div>

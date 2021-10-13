@@ -34,6 +34,7 @@ export default function UserHome() {
   const router = useRouter();
 
   console.log("Query Parameter : ", router.query);
+  if (!currentUser) return <p> User logged out</p>;
   return (
     <Layout
       title="Boards | Trello"

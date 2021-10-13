@@ -175,12 +175,12 @@ export default function LoginTrello() {
         <div className={styles.horizontalDivider}></div>
 
         <div className={styles.otherOptions}>
-          <Link href="/forgot" passHref>
+          <Link href="/account/forgot" passHref>
             <a className={styles.anchorTag}>Can't login?</a>
           </Link>
 
           <div className={styles.dot}></div>
-          <Link href="/signup" passHref>
+          <Link href="/account/signup" passHref>
             <a className={styles.anchorTag}>Sign up for an account</a>
           </Link>
         </div>

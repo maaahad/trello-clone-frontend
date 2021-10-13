@@ -11,7 +11,7 @@ import Image from "next/image";
 // sass styles
 import styles from "../../styles/account/form-background.module.sass";
 
-export default function FormBackground() {
+export default function PageBackground() {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>

@@ -41,11 +41,11 @@ export default function Nav() {
       </div>
       <div className={styles.account}>
         {/* ||todo href should be changed ot Log in page */}
-        <Link href="/login" passHref>
+        <Link href="/account/login" passHref>
           <a className={styles.login}>Log in</a>
         </Link>
         {/* ||todo href should be change to sign up page */}
-        <Link href="/signup" passHref>
+        <Link href="/account/signup" passHref>
           <a className={styles.signup}>Sign up</a>
         </Link>
       </div>

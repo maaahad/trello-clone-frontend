@@ -47,7 +47,7 @@ export default function Nav() {
     event.preventDefault();
     const rootUrl = process.env.NEXT_PUBLIC_TRELLO_BACKEND_URL_ROOT;
     const body = {
-      id: currentUser.id,
+      id: currentUser._id,
     };
     jsonFetch(`${rootUrl}/account/user/logout`, "put", body).then(
       (messageFromDb) => {
