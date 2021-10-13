@@ -11,6 +11,12 @@ import { BiSearch, BiPlus, BiBell } from "react-icons/bi";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
+// react-redux
+import { useSelector, useDispatch } from "react-redux";
+
+// action creator and selector
+import { userLoggedOut, selectCurrentUser } from "../users/usersSlice";
+
 // in-house components
 
 // in-house hooks
@@ -31,8 +37,11 @@ function DotRow() {
   );
 }
 
-export default function Nav({ currentUser }) {
+export default function Nav() {
+  // currentUser should be in the redux store
   const router = useRouter();
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
   // test logout
   const logout = (event) => {
     event.preventDefault();
@@ -43,6 +52,7 @@ export default function Nav({ currentUser }) {
     jsonFetch(`${rootUrl}/account/user/logout`, "put", body).then(
       (messageFromDb) => {
         console.log(messageFromDb);
+        dispatch(userLoggedOut());
         router.push({ pathname: "/" });
       }
     );
@@ -76,7 +86,7 @@ export default function Nav({ currentUser }) {
         </button>
         <button type="button">MA</button>
         <button type="button" onClick={logout}>
-          Sample logout
+          logout
         </button>
       </div>
     </nav>

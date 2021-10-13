@@ -1,9 +1,16 @@
 // react
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 
 // nextjs
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+// react-redux
+import { useDispatch } from "react-redux";
+
+// action creator and selector
+import { userLoggedIn } from "../users/usersSlice";
 
 // react-icons
 import { FcGoogle } from "react-icons/fc";
@@ -14,6 +21,8 @@ import { VscChevronDown } from "react-icons/vsc";
 
 // in-house hooks
 import { useInput } from "../../lib/hooks";
+// in-houser libs
+import { jsonFetch } from "../../lib/backend-fetch";
 
 // sass styles
 import styles from "../../styles/account/login-trello.module.sass";
@@ -87,9 +96,7 @@ function LanguageSelect() {
   const [languageProps, ,] = useInput("english-uk");
   return (
     <select value={languageProps.value} onChange={languageProps.onChange}>
-      <option value="english-uk" selected>
-        English (UK)
-      </option>
+      <option value="english-uk">English (UK)</option>
       <option value="english-us">English (US)</option>
       <option value="swedish">Swedish</option>
     </select>
@@ -97,6 +104,8 @@ function LanguageSelect() {
 }
 
 export default function LoginTrello() {
+  const router = useRouter();
+  const dispatch = useDispatch();
   // or and thirdparty auth only visible if the user does not start providing value for email
   const [thirdPartyAuth, setThirdPartyAuth] = useState(true);
   const [loginWithSSO, toggleLoginWithSSO] = useReducer(
@@ -107,13 +116,37 @@ export default function LoginTrello() {
   //   login logic should be passed from here, so that it can decided between email + password and SSO
   const onLoginFormSubmit = (event) => {
     event.preventDefault();
+    const form = event.target;
     // we need two different logic for two different login option
     if (loginWithSSO) {
-      console.log("Trying to login with SSO: ");
+      console.log("Trying to login with SSO: [NOT IMPLEMENTED YET]");
     } else {
-      console.log("Trying to login with email and password");
+      //  sending put request to the server to log the user in
+      const rootUrl = process.env.NEXT_PUBLIC_TRELLO_BACKEND_URL_ROOT;
+      const body = {
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      };
+
+      jsonFetch(`${rootUrl}/account/user/login`, "put", body).then(
+        ({ user, workspaces }) => {
+          // we need to store the user and workspaces to the redux store
+          dispatch(userLoggedIn(user));
+          router.push({
+            pathname: "/user/home",
+          });
+        }
+      );
+
+      // we need a redux store to hold the current user
     }
   };
+
+  // prefetch the /user/hose
+  useEffect(() => {
+    router.prefetch("/user/home");
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.logoContainer}>

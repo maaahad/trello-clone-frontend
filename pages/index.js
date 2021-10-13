@@ -8,9 +8,9 @@ import Head from "next/head";
 import Image from "next/image";
 
 // in-house components
-import Nav from "../components/landing/nav";
-import Hero from "../components/landing/hero";
-import TrelloProduct from "../components/landing/trello-product";
+import Nav from "../features/landing/nav";
+import Hero from "../features/landing/hero";
+import TrelloProduct from "../features/landing/trello-product";
 
 // sass styles
 import styles from "../styles/home.module.sass";

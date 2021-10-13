@@ -8,9 +8,9 @@ import Image from "next/image";
 import Head from "next/head";
 
 // in-house components
-import Layout from "../components/layout";
-import FormBackground from "../components/account/form-background";
-import LoginTrello from "../components/account/login-trello";
+import Layout from "../features/layout";
+import FormBackground from "../features/account/form-background";
+import LoginTrello from "../features/account/login-trello";
 
 // sass styles
 import styles from "../styles/login.module.sass";

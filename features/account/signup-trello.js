@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // nextjs
 import Image from "next/image";
@@ -74,16 +74,19 @@ function Form({
 
     jsonFetch(`${rootUrl}/account/user/signup`, "post", body).then(
       ({ user, workspaces }) => {
+        // we need to store the user and all of its workspaces to redux store
         // route to user home page
         router.push({
           pathname: "/user/home",
-          query: { email: user.email, id: user._id },
         });
       }
     );
   };
 
-  // prefetch the /user/home page : not possible as it is depend on user's input
+  // prefetch the /user/home
+  useEffect(() => {
+    router.prefetch("/user/home");
+  }, []);
 
   return (
     <form

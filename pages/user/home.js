@@ -3,10 +3,20 @@
 // nextjs
 import { useRouter } from "next/router";
 
+// react-redux
+import { useSelector, useDispatch } from "react-redux";
+
+// action creator and selector
+import {
+  userLoggedIn,
+  userLoggedOut,
+  selectCurrentUser,
+} from "../../features/users/usersSlice";
+
 // react-icons
 
 // in-house components
-import Layout from "../../components/layout";
+import Layout from "../../features/layout";
 
 // in-house hooks
 
@@ -16,6 +26,9 @@ import Layout from "../../components/layout";
 // import styles from "../../styles/account/signup-trello.module.sass";
 
 export default function UserHome() {
+  const currentUser = useSelector(selectCurrentUser);
+
+  console.log("Current User : ", currentUser);
   // here we use the current user to fetch workspaces for the uesr using SWR
   //  user information is passed as the query string
   const router = useRouter();
@@ -25,10 +38,10 @@ export default function UserHome() {
     <Layout
       title="Boards | Trello"
       nav={true}
-      currentUser={{ email: router.query.email, id: router.query.id }}
+      currentUser={{ email: currentUser.email, id: currentUser.id }}
     >
       <div>
-        <div>This is User's ({router.query.email}) home page</div>
+        <div>This is User's ({currentUser.email}) home page</div>
       </div>
     </Layout>
   );
