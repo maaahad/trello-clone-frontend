@@ -20,7 +20,7 @@ import { useInput } from "../../lib/hooks";
 import { jsonFetch } from "../../lib/backend-fetch";
 
 // sass styles
-import styles from "../../styles/account/signup-trello.module.sass";
+import styles from "../../styles/account/signup-form.module.sass";
 
 // should be moved to its own file
 function Form({

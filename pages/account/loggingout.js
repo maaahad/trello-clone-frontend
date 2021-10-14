@@ -2,6 +2,7 @@
 // import
 
 import AccountTemplate from "../../features/account/account-template";
+import LoggingoutConfirmation from "../../features/account/loggingout-confirmation";
 
 export default function LggingOut() {
   return (
@@ -11,7 +12,7 @@ export default function LggingOut() {
         name: "description",
         content: "This is the Loging out page for Trello-Clone",
       }}
-      renderContent={<h1>Testing logging out page </h1>}
+      renderContent={<LoggingoutConfirmation />}
     />
   );
 }
