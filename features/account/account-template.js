@@ -3,6 +3,7 @@
 
 // nextjs
 import Image from "next/image";
+import Link from "next/link";
 
 // in-house component
 import Layout from "../layout";
@@ -30,7 +31,12 @@ function LanguageSelect() {
 }
 
 // renderContent is passed as render component
-export default function AccountTemplate({ title, meta, renderContent }) {
+export default function AccountTemplate({
+  title,
+  meta,
+  renderContent,
+  logout = false,
+}) {
   return (
     <Layout title={title} meta={meta}>
       <div className={styles.pageContainer}>
@@ -43,17 +49,33 @@ export default function AccountTemplate({ title, meta, renderContent }) {
             </div>
             <div className={styles.formContainer}>{renderContent}</div>
 
-            {/* the followin should move to the account template */}
-            <div className={styles.languageChoice}>
-              <LanguageSelect />
-              {/* we add a custom caret */}
-              <VscChevronDown />
-            </div>
+            {logout ? (
+              //   this following should come from Logout page
+              <div className={styles.policyNnotice}>
+                <div className={styles.links}>
+                  <Link href="/" passHref>
+                    <a>Privacy Policy</a>
+                  </Link>
+                  <div className={styles.dot}></div>
+                  <Link href="/" passHref>
+                    <a>User Notice</a>
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className={styles.languageChoice}>
+                  <LanguageSelect />
+                  {/* we add a custom caret */}
+                  <VscChevronDown />
+                </div>
 
-            <footer className={styles.footer}>
-              This will be the footer...This will have a complete separate
-              component to be used by other page
-            </footer>
+                <footer className={styles.footer}>
+                  This will be the footer...This will have a complete separate
+                  component to be used by other page
+                </footer>
+              </>
+            )}
           </div>
         </div>
       </div>

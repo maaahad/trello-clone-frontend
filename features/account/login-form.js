@@ -166,11 +166,8 @@ export default function LoginForm() {
       <a className={styles.anchorTag} onClick={toggleLoginWithSSO}>
         {!loginWithSSO ? "Log in with SSO" : "Log in with email and password"}
       </a>
-      {/* </Link> */}
 
-      <div className={styles.horizontalDivider}></div>
-
-      <div className={styles.otherOptions}>
+      <div className={styles.links}>
         <Link href="/account/forgot" passHref>
           <a className={styles.anchorTag}>Can't login?</a>
         </Link>

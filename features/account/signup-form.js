@@ -213,10 +213,12 @@ export default function SignupForm() {
           <ThirdPartyAuth />
         </>
       )}
-      <div className={styles.horizontalDivider}></div>
-      <Link href="/account/login" passHref>
-        <a className={styles.anchorTag}>Already have an account? Log In</a>
-      </Link>
+      {/* <div className={styles.horizontalDivider}></div> */}
+      <div className={styles.link}>
+        <Link href="/account/login" passHref>
+          <a className={styles.anchorTag}>Already have an account? Log In</a>
+        </Link>
+      </div>
     </div>
   );
 }
