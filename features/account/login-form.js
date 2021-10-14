@@ -103,7 +103,7 @@ function LanguageSelect() {
   );
 }
 
-export default function LoginTrello() {
+export default function LoginForm() {
   const router = useRouter();
   const dispatch = useDispatch();
   // or and thirdparty auth only visible if the user does not start providing value for email
@@ -148,52 +148,38 @@ export default function LoginTrello() {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.logoContainer}>
-        <Image src="/trello-logo.svg" layout="fill" objectFit="contain" />
-      </div>
-      <div className={styles.formContainer}>
-        <h1>Log in to Trello</h1>
-        <Form
-          onLoginFormSubmit={onLoginFormSubmit}
-          setThirdPartyAuth={setThirdPartyAuth}
-          loginWithSSO={loginWithSSO}
-        />
-        <div className={styles.or}>OR</div>
-        {thirdPartyAuth && (
-          <>
-            <ThirdPartyAuth />
-          </>
-        )}
-        {/* need to understand how to login with sso */}
-        {/* <Link href={!loginWithSSO ? "/login-sso" : "/login"} passHref> */}
-        <a className={styles.anchorTag} onClick={toggleLoginWithSSO}>
-          {!loginWithSSO ? "Log in with SSO" : "Log in with email and password"}
-        </a>
-        {/* </Link> */}
+    <div className={styles.formSubContainer}>
+      <h1 className={styles.formTitle}>Log in to Trello</h1>
+      <Form
+        onLoginFormSubmit={onLoginFormSubmit}
+        setThirdPartyAuth={setThirdPartyAuth}
+        loginWithSSO={loginWithSSO}
+      />
+      <div className={styles.or}>OR</div>
+      {thirdPartyAuth && (
+        <>
+          <ThirdPartyAuth />
+        </>
+      )}
+      {/* need to understand how to login with sso */}
+      {/* <Link href={!loginWithSSO ? "/login-sso" : "/login"} passHref> */}
+      <a className={styles.anchorTag} onClick={toggleLoginWithSSO}>
+        {!loginWithSSO ? "Log in with SSO" : "Log in with email and password"}
+      </a>
+      {/* </Link> */}
 
-        <div className={styles.horizontalDivider}></div>
+      <div className={styles.horizontalDivider}></div>
 
-        <div className={styles.otherOptions}>
-          <Link href="/account/forgot" passHref>
-            <a className={styles.anchorTag}>Can't login?</a>
-          </Link>
+      <div className={styles.otherOptions}>
+        <Link href="/account/forgot" passHref>
+          <a className={styles.anchorTag}>Can't login?</a>
+        </Link>
 
-          <div className={styles.dot}></div>
-          <Link href="/account/signup" passHref>
-            <a className={styles.anchorTag}>Sign up for an account</a>
-          </Link>
-        </div>
+        <div className={styles.dot}></div>
+        <Link href="/account/signup" passHref>
+          <a className={styles.anchorTag}>Sign up for an account</a>
+        </Link>
       </div>
-      <div className={styles.languageChoice}>
-        <LanguageSelect />
-        {/* we add a custom caret */}
-        <VscChevronDown />
-      </div>
-      <footer className={styles.footer}>
-        This will be the footer...This will have a complete separate component
-        to be used by other page
-      </footer>
     </div>
   );
 }

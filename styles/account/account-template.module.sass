@@ -14,3 +14,80 @@
     display: flex
     align-items: center
     justify-content: center
+
+.contentSubContianer
+    height: auto
+    width: 100vw
+    display: flex
+    flex-flow: column nowrap
+    align-items: center
+    justify-content: flex-start
+    background-color: theme.$bg-primary
+    padding: 15px 0 20px 0
+    & > * + *
+        margin-block-start: 40px
+
+.logoContainer
+    position: relative
+    width: 200px
+    height: 43px
+    display: flex
+    align-items: center
+    justify-conent: center
+
+.formContainer
+    background-color: transparent
+    max-width: 460px
+    padding: 40px
+    padding-block-start: 0
+    color: theme.$trello-form-text-primary
+    & > * + *
+        margin-block-start: 15px
+    & > h1
+        font-size: 16px
+        line-height: 1.6
+        margin: 0
+        margin-block-end: 25px
+        text-align: center
+
+.languageChoice
+    height: 44px
+    border: 2px solid theme.$border-select-grey
+    color: theme.$trello-form-text-primary
+    width: 180px
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: space-between
+    padding: 0 5px 0 8px
+    & > select
+        flex: 1
+        -moz-appearance: none
+        -webkit-appearance: none
+        appearance: none
+        font-size: 14px
+        font-weight: 300
+        height: 100%
+        background-color: transparent
+        outline: none
+        border: none
+        color: inherit
+
+    & > svg
+        width: 28px
+        height: 28px
+        color: #959da1
+
+// --------------------------------------------------
+// media condition
+@media screen and (min-width: 641px)
+    .contentSubContianer
+        width: 400px
+        background-color: transparent
+        padding: 40px 0 30px 0
+
+    .formContainer
+        width: 500px
+        padding-block-start: 20px
+        background-color: theme.$bg-primary
+        @include theme.account-form-shadow

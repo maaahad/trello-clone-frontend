@@ -185,52 +185,38 @@ function LanguageSelect() {
   );
 }
 
-export default function SignupTrello() {
+export default function SignupForm() {
   // or and thirdparty auth only visible if the user does not start providing value for email
   const [thirdPartyAuth, setThirdPartyAuth] = useState(true);
   const [duplicateEmailError, setDuplicateEmailError] = useState(false);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.logoContainer}>
-        <Image src="/trello-logo.svg" layout="fill" objectFit="contain" />
-      </div>
-      <div className={styles.formContainer}>
-        {duplicateEmailError && (
-          <div className={styles.duplicateEmailError}>
-            Hey, that email is already in use by another Trello account. You'll
-            need to login with Atlassian to use Trello.
-            <Link href="/account/login" passHref>
-              <a className={styles.anchorTag}>Log In</a>
-            </Link>
-          </div>
-        )}
-        <h1>Sign up for your account</h1>
-        <Form
-          setThirdPartyAuth={setThirdPartyAuth}
-          setDuplicateEmailError={setDuplicateEmailError}
-        />
+    <div className={styles.formSubContainer}>
+      {duplicateEmailError && (
+        <div className={styles.duplicateEmailError}>
+          Hey, that email is already in use by another Trello account. You'll
+          need to login with Atlassian to use Trello.
+          <Link href="/account/login" passHref>
+            <a className={styles.anchorTag}>Log In</a>
+          </Link>
+        </div>
+      )}
+      <h1>Sign up for your account</h1>
+      <Form
+        setThirdPartyAuth={setThirdPartyAuth}
+        setDuplicateEmailError={setDuplicateEmailError}
+      />
 
-        {thirdPartyAuth && (
-          <>
-            <div className={styles.or}>OR</div>
-            <ThirdPartyAuth />
-          </>
-        )}
-        <div className={styles.horizontalDivider}></div>
-        <Link href="/account/login" passHref>
-          <a className={styles.anchorTag}>Already have an account? Log In</a>
-        </Link>
-      </div>
-      <div className={styles.languageChoice}>
-        <LanguageSelect />
-        {/* we add a custom caret */}
-        <VscChevronDown />
-      </div>
-      <footer className={styles.footer}>
-        This will be the footer...This will have a complete separate component
-        to be used by other page
-      </footer>
+      {thirdPartyAuth && (
+        <>
+          <div className={styles.or}>OR</div>
+          <ThirdPartyAuth />
+        </>
+      )}
+      <div className={styles.horizontalDivider}></div>
+      <Link href="/account/login" passHref>
+        <a className={styles.anchorTag}>Already have an account? Log In</a>
+      </Link>
     </div>
   );
 }

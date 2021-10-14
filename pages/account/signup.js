@@ -2,7 +2,7 @@
 // import
 
 import AccountTemplate from "../../features/account/account-template";
-import SignupTrello from "../../features/account/signup-trello";
+import SignupForm from "../../features/account/signup-form";
 
 export default function LggingOut() {
   return (
@@ -12,7 +12,7 @@ export default function LggingOut() {
         name: "description",
         content: "This is the signup to Trello-Clone",
       }}
-      renderContent={<SignupTrello />}
+      renderContent={<SignupForm />}
     />
   );
 }
