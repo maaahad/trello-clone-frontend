@@ -10,6 +10,7 @@ import { BiSearch, BiPlus, BiBell } from "react-icons/bi";
 // nextjs
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 // react-redux
 import { useSelector, useDispatch } from "react-redux";
@@ -39,26 +40,24 @@ function DotRow() {
 
 export default function Nav() {
   // currentUser should be in the redux store
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const currentUser = useSelector(selectCurrentUser);
+  // const router = useRouter();
+  // const dispatch = useDispatch();
+  // const currentUser = useSelector(selectCurrentUser);
   // test logout
-  const logout = (event) => {
-    event.preventDefault();
-    const rootUrl = process.env.NEXT_PUBLIC_TRELLO_BACKEND_URL_ROOT;
-    const body = {
-      id: currentUser._id,
-    };
-    jsonFetch(`${rootUrl}/account/user/logout`, "put", body).then(
-      (messageFromDb) => {
-        console.log(messageFromDb);
-        dispatch(userLoggedOut());
-        router.push({ pathname: "/" });
-      }
-    );
-    // first try make this loggedis to set to false
-    // route to logging out : Later
-  };
+  // const logout = (event) => {
+  //   event.preventDefault();
+  //   const rootUrl = process.env.NEXT_PUBLIC_TRELLO_BACKEND_URL_ROOT;
+  //   const body = {
+  //     id: currentUser._id,
+  //   };
+  //   jsonFetch(`${rootUrl}/account/user/logout`, "put", body).then(
+  //     (messageFromDb) => {
+  //       console.log(messageFromDb);
+  //       dispatch(userLoggedOut());
+  //       router.push({ pathname: "/" });
+  //     }
+  //   );
+  // };
   return (
     <nav className={styles.nav}>
       <div>
@@ -85,9 +84,10 @@ export default function Nav() {
           <BiBell />
         </button>
         <button type="button">MA</button>
-        <button type="button" onClick={logout}>
-          logout
-        </button>
+
+        <Link href="/account/logout" passHref>
+          <a>Logout</a>
+        </Link>
       </div>
     </nav>
   );

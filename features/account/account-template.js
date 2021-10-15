@@ -51,15 +51,33 @@ export default function AccountTemplate({
 
             {logout ? (
               //   this following should come from Logout page
-              <div className={styles.policyNnotice}>
-                <div className={styles.links}>
-                  <Link href="/" passHref>
-                    <a>Privacy Policy</a>
-                  </Link>
-                  <div className={styles.dot}></div>
-                  <Link href="/" passHref>
-                    <a>User Notice</a>
-                  </Link>
+              <div className={styles.logoutBottomContainer}>
+                <div className={styles.policyNnotice}>
+                  <div className={styles.links}>
+                    <Link href="/" passHref>
+                      <a>Privacy Policy</a>
+                    </Link>
+                    <div className={styles.dot}></div>
+                    <Link href="/" passHref>
+                      <a>User Notice</a>
+                    </Link>
+                  </div>
+                </div>
+                <div className={styles.atlassian}>
+                  <div className={styles.atlassianLogo}>
+                    <Image
+                      src="/atlassian-logo.svg"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <p>
+                    One account for Trello, Jira, Confluence and{" "}
+                    <Link href="/account/signup" passHref>
+                      <a>more</a>
+                    </Link>
+                    .
+                  </p>
                 </div>
               </div>
             ) : (
