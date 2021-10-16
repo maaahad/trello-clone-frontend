@@ -1,0 +1,64 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "theme"
+
+.container
+    width: 100%
+    display: flex
+    flex-flow: column nowrap
+    align-items: center
+    justify-content: center
+    padding-block-end: 30px
+
+.languageSelectionContainer
+    margin: 40px 0
+    height: 44px
+    border: 2px solid theme.$border-select-grey
+    color: theme.$trello-form-text-primary
+    width: 180px
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: center
+    padding: 0 5px 0 8px
+    & > select
+        flex: 1
+        -moz-appearance: none
+        -webkit-appearance: none
+        appearance: none
+        font-size: 14px
+        font-weight: 300
+        height: 100%
+        background-color: transparent
+        outline: none
+        border: none
+        color: inherit
+
+    & > svg
+        width: 28px
+        height: 28px
+        color: #959da1
+.atlassianNquickLinks
+    align-self: stretch
+    border-block-start: 1px solid theme.$border-separator
+    padding-block-start: 20px
+    display: flex
+    flex-flow: column
+    align-items: center
+    justify-content: flex-start
+
+    & > * + *
+        margin-block-start: 30px
+
+.atlassianLogo
+    position: relative
+    width: 150px
+    height: 20px
+
+.quickLinks
+    display: flex
+    flex-flow: row wrap
+    align-items: center
+    justify-content: center
+    & > * + *
+        margin-inline-start: 10px

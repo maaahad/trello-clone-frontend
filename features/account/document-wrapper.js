@@ -9,6 +9,9 @@ import Link from "next/link";
 import Layout from "../../features/layout";
 import PageBackground from "./page-background";
 
+// testing footer
+import Footer from "../footer";
+
 // in-houser hooks
 import { useInput } from "../../lib/hooks";
 
@@ -55,31 +58,20 @@ export default function DocumentWrapper({
             <div className={styles.formContainer}>{form}</div>
 
             <div className={styles.additionalLinks}>
-              {/* login : Privacy policy + Terms of Service */}
-              {/* TODO: double check logout : Privacy policy + user Notice*/}
-              {/* signup : no additional links */}
-              {/* <Link href="/" passHref>
-                <a>Privacy Policy</a>
-              </Link>
-              <div className={styles.dot}></div>
-              <Link href="/" passHref>
-                <a>Terms of Service</a>
-              </Link> */}
               {renderAdditionalLinks()}
             </div>
           </div>
 
-          <footer className={styles.footer}>
-            {/* footer should hava border top, padding top */}
-            <div className={styles.languageSelectionContainer}>
+          <div className={styles.footerContainer}>
+            <Footer />
+            {/* <div className={styles.languageSelectionContainer}>
               <LanguageSelect />
-              {/* we add a custom caret */}
               <VscChevronDown />
             </div>
-            <div className={styles.quickLinks}>
+            <div className={styles.atlassianNquickLinks}>
               Atlasian logo and Several Quick links ...
-            </div>
-          </footer>
+            </div> */}
+          </div>
         </div>
       </div>
     </Layout>
