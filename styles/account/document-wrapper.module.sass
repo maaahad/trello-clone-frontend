@@ -3,15 +3,16 @@
 @use "../theme"
 
 .container
+    position: relative
     width: 100vw
     display: flex
     flex-flow: column nowrap
     align-items: center
     justify-content: flex-start
-
     background-color: white
 
 .content
+    z-index: theme.$zindex-form
     min-height: 100vh
     max-width: 460px
     display: flex
@@ -46,6 +47,10 @@
     font-weight: 300
     line-height: 1.44
 
+    // this is for the dot separator between links
+    & > div
+        margin: 0 10px
+
     & a
         display: inline-block
         font: inherit
@@ -58,12 +63,12 @@
             cursor: pointer
             text-decoration: .5px underline theme.$trello-anchor-text-color-primary
 
-.dot
-    margin: 0 10px
-    width: 4px
-    height: 4px
-    border-radius: 50%
-    background-color: theme.$bg-secondary
+// .dot
+//     margin: 0 10px
+//     width: 4px
+//     height: 4px
+//     border-radius: 50%
+//     background-color: theme.$bg-secondary
 
 .footer
     display: flex
@@ -106,9 +111,11 @@
 // --------------------------------------------------
 // media condition
 @media screen and (min-width: 641px)
+    .container
+        background-color: transparent
+
     .content
         max-width: 500px
-        background-color: transparent
 
     .logo
         margin-block-start: 40px

@@ -1,18 +1,18 @@
 // --------------------------------------------------
 // import
 
-import AccountTemplate from "../../features/account/account-template";
 import SignupForm from "../../features/account/signup-form";
+import DocumentWrapper from "../../features/account/document-wrapper";
 
-export default function LggingOut() {
+export default function Signup() {
   return (
-    <AccountTemplate
+    <DocumentWrapper
       title="Signup to Trello-Clone"
       meta={{
         name: "description",
         content: "This is the signup to Trello-Clone",
       }}
-      renderContent={<SignupForm />}
+      form={<SignupForm />}
     />
   );
 }

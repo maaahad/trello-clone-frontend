@@ -1,19 +1,43 @@
 // --------------------------------------------------
 // import
 
-import AccountTemplate from "../../features/account/account-template";
+// nextjs
+import Link from "next/link";
+
+// in-house component
 import LogoutConfirmation from "../../features/account/logout-confirmation";
+import DocumentWrapper from "../../features/account/document-wrapper";
 
 export default function Logout() {
+  const renderAdditionalLinks = () => {
+    return (
+      <>
+        <Link href="/" passHref>
+          <a>Privacy Policy</a>
+        </Link>
+        <div
+          style={{
+            width: "4px",
+            height: "4px",
+            "border-radius": "50%",
+            "background-color": "#4d4d4d",
+          }}
+        ></div>
+        <Link href="/" passHref>
+          <a>User Notice</a>
+        </Link>
+      </>
+    );
+  };
   return (
-    <AccountTemplate
+    <DocumentWrapper
       title="logging out from Trello"
       meta={{
         name: "description",
         content: "This is the Loging out page for Trello-Clone",
       }}
-      renderContent={<LogoutConfirmation />}
-      logout={true}
+      form={<LogoutConfirmation />}
+      renderAdditionalLinks={renderAdditionalLinks}
     />
   );
 }
