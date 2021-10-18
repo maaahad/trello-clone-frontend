@@ -25,7 +25,10 @@ function LanguageSelect() {
   );
 }
 
-export default function Footer({ enableanguageOption = true }) {
+export default function Footer({
+  enableanguageOption = true,
+  renderFooterBottom = null,
+}) {
   return (
     <footer className={styles.container}>
       {enableanguageOption && (
@@ -44,8 +47,9 @@ export default function Footer({ enableanguageOption = true }) {
             alt="Atlassian Logo"
           />
         </div>
-        <div className={styles.quickLinks}>
-          <Link href="/" passHref>
+        <div className={styles.footerBottom}>
+          {renderFooterBottom}
+          {/* <Link href="/" passHref>
             <a>Templates</a>
           </Link>
           <Link href="/" passHref>
@@ -71,7 +75,7 @@ export default function Footer({ enableanguageOption = true }) {
           </Link>
           <Link href="/" passHref>
             <a>Cookie Settings</a>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </footer>

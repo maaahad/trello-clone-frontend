@@ -7,6 +7,10 @@ import Link from "next/link";
 // in-house component
 import LogoutConfirmation from "../../features/account/logout-confirmation";
 import DocumentWrapper from "../../features/account/document-wrapper";
+import Footer from "../../features/footer";
+
+// sass styles
+import styles from "../../styles/account/logout.module.sass";
 
 export default function Logout() {
   const renderAdditionalLinks = () => {
@@ -29,6 +33,18 @@ export default function Logout() {
       </>
     );
   };
+
+  const renderFooterBottom = (
+    <div className={styles.logoutFooterBottom}>
+      <p>
+        One account for Trello, Jira, Confluence and{" "}
+        <Link href="/" passHref>
+          <a>more</a>
+        </Link>
+        .
+      </p>
+    </div>
+  );
   return (
     <DocumentWrapper
       title="logging out from Trello"
@@ -38,6 +54,7 @@ export default function Logout() {
       }}
       form={<LogoutConfirmation />}
       renderAdditionalLinks={renderAdditionalLinks}
+      footer={<Footer renderFooterBottom={renderFooterBottom} />}
     />
   );
 }

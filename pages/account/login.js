@@ -7,6 +7,47 @@ import Link from "next/link";
 // in-house component
 import LoginForm from "../../features/account/login-form";
 import DocumentWrapper from "../../features/account/document-wrapper";
+import Footer from "../../features/footer";
+import Links from "../../features/utilities/links";
+
+export const quickLinks = [
+  {
+    label: "Templates",
+    href: "/",
+  },
+  {
+    label: "Pricing",
+    href: "/",
+  },
+  {
+    label: "Apps",
+    href: "/",
+  },
+  {
+    label: "Jobs",
+    href: "/",
+  },
+  {
+    label: "Blog",
+    href: "/",
+  },
+  {
+    label: "Developers",
+    href: "/",
+  },
+  {
+    label: "About",
+    href: "/",
+  },
+  {
+    label: "Help",
+    href: "/",
+  },
+  {
+    label: "Cookie Settings",
+    href: "/",
+  },
+];
 
 export default function Login() {
   const renderAdditionalLinks = () => {
@@ -32,13 +73,14 @@ export default function Login() {
 
   return (
     <DocumentWrapper
-      title="log is to Trello"
+      title="Login to Trello"
       meta={{
         name: "description",
-        content: "This is the Log in page for Trello-Clone",
+        content: "This is the Login page for Trello-Clone",
       }}
       form={<LoginForm />}
       renderAdditionalLinks={renderAdditionalLinks}
+      footer={<Footer renderFooterBottom={<Links links={quickLinks} />} />}
     />
   );
 }

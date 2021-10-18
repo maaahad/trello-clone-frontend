@@ -38,6 +38,7 @@ export default function DocumentWrapper({
   meta = {},
   form = <p>Form Not provided</p>,
   renderAdditionalLinks = (f) => f,
+  footer = <p>footer</p>,
 }) {
   return (
     <Layout title={title} meta={meta}>
@@ -63,7 +64,8 @@ export default function DocumentWrapper({
           </div>
 
           <div className={styles.footerContainer}>
-            <Footer />
+            {/* <Footer /> */}
+            {footer}
             {/* <div className={styles.languageSelectionContainer}>
               <LanguageSelect />
               <VscChevronDown />
