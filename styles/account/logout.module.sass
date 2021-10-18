@@ -1,0 +1,24 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.logoutFooterBottom
+    margin-block-start: -35px
+    & > p
+        marign: 0
+        padding: 0
+        color: theme.$text-color-secondary
+        font-size: 12px
+        line-height: 1.3
+        font-weight: 400
+        & > a
+            display: inline-block
+            font: inherit
+            color: theme.$trello-anchor-text-color-primary
+            text-decoration: none
+            transition: all .15s ease-in-out
+            text-align: center
+
+            &:hover
+                cursor: pointer
+                text-decoration: .5px underline theme.$trello-anchor-text-color-primary

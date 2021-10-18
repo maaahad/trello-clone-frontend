@@ -18,9 +18,10 @@ export default function Nav() {
   // this callback is responsible to change the background and box-shadow of nav
   // on scroll
   const onWindowScroll = useCallback(() => {
+    if (!navRef.current) return;
     const offsetY = window.scrollY;
     if (offsetY < 60) {
-      navRef.current.style.backgroundColor = "#eae6ff";
+      navRef.current.style.backgroundColor = "transparent";
       navRef.current.style.boxShadow = "none";
     } else {
       navRef.current.style.backgroundColor = "#fff";
@@ -40,11 +41,11 @@ export default function Nav() {
       </div>
       <div className={styles.account}>
         {/* ||todo href should be changed ot Log in page */}
-        <Link href="/" passHref>
+        <Link href="/account/login" passHref>
           <a className={styles.login}>Log in</a>
         </Link>
         {/* ||todo href should be change to sign up page */}
-        <Link href="/" passHref>
+        <Link href="/account/signup" passHref>
           <a className={styles.signup}>Sign up</a>
         </Link>
       </div>

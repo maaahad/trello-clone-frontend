@@ -1,0 +1,114 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.container
+    max-width: 540px
+    text-align: center
+    padding: 0 15px
+    color: theme.$trello-text-blackish
+    & > * + *
+        margin-block-start: 20px
+
+.doTrello
+    display: flex
+    flex-flow: column nowrap
+    align-items: stretch
+    justify-content: flex-start
+    & > * + *
+        margin-block-start: 10px
+
+    & > h2
+        margin: 0
+        font-size: 1.5rem
+        line-height: 1.33
+        font-weight: 500
+        color: inherit
+        text-align: center
+
+    & > p
+        margin: 0
+        margin-block-end: 24px
+        font-size: 1.25rem
+        line-height: 1.5
+        font-weight: 400
+        text-align: center
+
+.startDoingButton
+    align-self: center
+    color: theme.$bg-button-active-hover-blue
+    height: 44px
+    padding: 0 20px
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    outline: none
+    border: 1px solid theme.$bg-button-active-hover-blue
+    border-radius: 6px
+    background-color: transparent
+    font-size: 20px
+    line-height: 1.5
+    font-weight: 400
+    transition: all .15s ease-in-out
+
+    & > * + *
+        margin-inline-start: 5px
+
+    &:hover
+        background-color: theme.$bg-button-active-hover-blue
+        color: theme.$trello-white
+
+.boardImgContainer
+    position: relative
+    width: 100%
+    height: 360px
+    max-height: 360px
+
+.trelloCustomers
+    & > p
+        margin: 0
+        margin-block-end: 40px
+        font-size: 1.25rem
+        line-height: 1.5
+        font-weight: 400
+        text-align: center
+
+.trelloCustomersLogo
+    width: 100%
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: center
+
+    & > div
+        position: relative
+        height: 34px
+        // 16 + 16 + 16 + 16 + 16 (margin)
+        width: calc(100% - 80px)
+        margin-inline-start: 16px
+
+.constcoLogo
+    margin-inline-end: 16px
+
+// --------------------------------------------------
+// media condition
+
+@media screen and (min-width: 768px)
+    .container
+        max-width: 720px
+
+    .doTrello
+        & > h2
+            font-size: 2.25rem
+
+    .boardImgContainer
+        height: 480px
+        max-height: 480px
+
+@media screen and (min-width: 992px)
+    .container
+        max-width: 960px
+
+    .boardImgContainer
+        height: 650px
+        max-height: 650px

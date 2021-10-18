@@ -1,0 +1,24 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.linksContainer
+    display: flex
+    flex-flow: row wrap
+    align-items: center
+    justify-content: center
+    & > * + *
+        margin-inline-start: 10px
+    & > a
+        font-size: 14px
+        line-height: 1.5
+        font-weight: 300
+        color: theme.$anchor-trello-quicklinks
+        display: inline-block
+        text-decoration: none
+        transition: all .15s ease-in-out
+        text-align: center
+
+        &:hover
+            cursor: pointer
+            text-decoration: .5px underline theme.$trello-anchor-text-color-primary

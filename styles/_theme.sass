@@ -1,24 +1,65 @@
 // --------------------------------------------------
 // This is the theme partials
 // text-color
+$text-color-primary: #4d4d4d
+$text-color-secondary: #6b778c
 $trello-blue: #0065ff
 $trello-blue-hover: #0051cc
+$trello-blue-focus: #4c9aff
 $trello-white: #fff
-$trello-shadow-grey: rgba(0,0,0,0.3)
+$trello-text-blackish: #091e42
+$trello-text-input: #495057
+$trello-anchor-text-color-primary: #0052cc
+// color for form
+$trello-form-text-primary: #5E6C84
+$trello-form-text-secondary: #253858
 
 // button-color
+$text-color-button-inactive: #8c8c8c
+$text-color-button: #505f79
+
+// anchor color
+$anchor-trello-signature: #298FCA
+$anchor-trello-quicklinks: #5E6C84
 
 // background-color
+$bg-primary: #fff
+$bg-secondary: #4d4d4d
+$bg-warning: #faf3c0
 $bg-landing-primary: #fff
 $bg-landing-secondary: #eae6ff
+$bg-form-background: #f9fafc
+$bg-button-inactive: #e2e4e6
+$bg-button-hover: #F9FAFC
+$bg-divider: #cccccc
+$bg-button-active-green: #5aac44
+$bg-button-active-blue: #0052cc
+$bg-button-active-hover-blue: #0065ff
+$bg-button-active-hover-green: #61BD4F
 
 // border-color
+$border-input-grey: #ccd4da
+$border-select-grey: #edeff0
+$border-warning: #F2D600
+$border-separator: #d5d8de
+
+// svg color 
+$svg-color-grey: #c1c7d0
 
 // typography
 
+// shadows
+$trello-shadow-grey: rgba(0,0,0,0.3)
+
 // breakpoints for landing page 
 $breakpoint-landing-md: 768px
-$breakpoint-landing-large: 992px
+$breakpoint-landing-lg: 992px
+$breakpoint-landing-xl: 1200px
+
+// z-index
+$zindex-nav: 111
+$zindex-form: 1
+$zindex-background: -1
 
 // --------------------------------------------------
 // mixins
@@ -29,7 +70,16 @@ $breakpoint-landing-large: 992px
 @mixin landing-shadow-scroll($shadowColor:$trello-shadow-grey )
     box-shadow: 0 0 10px rgba(0,0,0,0.3)
 
+@mixin button-hover-focus-shadow
+    box-shadow: 0 0 0 .2rem rgba(0,101,255,0.5)
+
+@mixin account-form-shadow
+    box-shadow: rgba(0,0,0,0.1) 0 0 10px
+
+@mixin button-shadow
+    box-shadow: rgba(0,0,0,0.2) 1px 1px 5px 0
 // gradient
 @mixin landing-hero-linear-grad
     background: $bg-landing-primary
-    background: linear-gradient(0deg, rgba($bg-landing-primary,1) 0%, rgba($bg-landing-secondary,1) 99%)
+    background: linear-gradient(0deg, $bg-landing-primary, $bg-landing-secondary 100%)
+    // background: linear-gradient(0deg, rgba($bg-landing-primary,1) 0%, rgba($bg-landing-secondary,1) 99%)
