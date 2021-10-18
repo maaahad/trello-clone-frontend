@@ -3,7 +3,6 @@
 
 // nextjs
 import Image from "next/image";
-import Link from "next/link";
 
 // in-houser hooks
 import { useInput } from "../lib/hooks";
@@ -47,36 +46,7 @@ export default function Footer({
             alt="Atlassian Logo"
           />
         </div>
-        <div className={styles.footerBottom}>
-          {renderFooterBottom}
-          {/* <Link href="/" passHref>
-            <a>Templates</a>
-          </Link>
-          <Link href="/" passHref>
-            <a>Pricing</a>
-          </Link>
-          <Link href="/" passHref>
-            <a>Apps</a>
-          </Link>
-          <Link href="/" passHref>
-            <a>Jobs</a>
-          </Link>
-          <Link href="/" passHref>
-            <a>Blog</a>
-          </Link>
-          <Link href="/" passHref>
-            <a>Developers</a>
-          </Link>
-          <Link href="/" passHref>
-            <a>About</a>
-          </Link>
-          <Link href="/" passHref>
-            <a>Help</a>
-          </Link>
-          <Link href="/" passHref>
-            <a>Cookie Settings</a>
-          </Link> */}
-        </div>
+        <div className={styles.footerBottom}>{renderFooterBottom}</div>
       </div>
     </footer>
   );

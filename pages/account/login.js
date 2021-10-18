@@ -60,8 +60,8 @@ export default function Login() {
           style={{
             width: "4px",
             height: "4px",
-            "border-radius": "50%",
-            "background-color": "#4d4d4d",
+            borderRadius: "50%",
+            backgroundColor: "#4d4d4d",
           }}
         ></div>
         <Link href="/" passHref>
