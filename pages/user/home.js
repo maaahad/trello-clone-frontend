@@ -42,7 +42,7 @@ export default function UserHome() {
       currentUser={{ email: currentUser.email, id: currentUser.id }}
     >
       <div>
-        <div>This is User's ({currentUser.email}) home page</div>
+        <div>This is User ({currentUser.email}) home page</div>
       </div>
     </Layout>
   );
