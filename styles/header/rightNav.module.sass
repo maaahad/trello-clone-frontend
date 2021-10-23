@@ -1,0 +1,106 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.rightNavContainer
+    display: flex 
+    flex-flow: row nowrap 
+    align-items: center 
+    justify-content: flex-end
+
+    & > * + *
+        margin-inline-start: 5px
+
+.searchButton, .notificationButton, .infoButton
+    width: 32px 
+    height: 32px
+    border: none 
+    outline: none 
+    border-radius: 3px
+
+    display: flex 
+    align-items: center 
+    justify-content: center 
+    transition: all .3s ease
+
+    & > svg 
+        width: 16px
+        height: 16px
+        color: theme.$trello-white
+
+    &:hover 
+        cursor: pointer
+        background-color: theme.$bg-nav-button-hover
+
+.searchButton
+    background-color: theme.$bg-nav-button
+
+
+.searchInput
+    display: none    
+.notificationButton, .infoButton
+    background-color: transparent
+
+.infoButton
+    display: none
+
+
+.userButton
+    width: 32px
+    height: 32px
+    border: none 
+    outline: none 
+    border-radius: 50%
+    background-color: theme.$trello-white
+    color: theme.$text-nav-user
+    font-size: 12px
+    font-weight: 600
+
+
+// --------------------------------------------------
+// media conditions 
+
+@media screen and (min-width: 751px)
+    .infoButton 
+        display: flex
+    .searchButton
+        display: none
+
+
+    .searchInputContainer
+        display: flex
+        height: 32px
+        width: 250px
+        flex-flow: row nowrap 
+        align-items: center 
+        justify-content: space-between
+        color: theme.$trello-white
+        background-color: theme.$bg-nav-button-hover
+        border-radius: 3px 
+        padding: 10px 5px
+
+        
+        & > * + * 
+            margin-inline-start: 5px
+        & > svg 
+            width: 16px 
+            height: 16px
+
+        & > input 
+            height: 32px
+            flex: 1
+            background-color: transparent
+            border: none 
+            outline: none
+            color: inherit
+
+            & ~ .searchInputRight 
+                display: none
+
+            &:focus 
+                background-color: white
+                & ~ .searchInputRight 
+                    display: flex
+                    flex-flow: row nowrap
+                    align-items: center 
+                    justify-content: flex-end

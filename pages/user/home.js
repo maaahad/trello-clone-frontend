@@ -26,23 +26,19 @@ import Layout from "../../features/layout";
 // import styles from "../../styles/account/signup-trello.module.sass";
 
 export default function UserHome() {
-  const currentUser = useSelector(selectCurrentUser);
+  // const currentUser = useSelector(selectCurrentUser);
 
-  console.log("Current User : ", currentUser);
+  // console.log("Current User : ", currentUser);
   // here we use the current user to fetch workspaces for the uesr using SWR
   //  user information is passed as the query string
   const router = useRouter();
 
-  console.log("Query Parameter : ", router.query);
-  if (!currentUser) return <h1> User home page .... coming soon ....</h1>;
+  // console.log("Query Parameter : ", router.query);
+  // if (!currentUser) return <h1> User home page .... coming soon ....</h1>;
   return (
-    <Layout
-      title="Boards | Trello"
-      nav={true}
-      currentUser={{ email: currentUser.email, id: currentUser.id }}
-    >
+    <Layout title="Boards | Trello" nav={true}>
       <div>
-        <div>This is User ({currentUser.email}) home page</div>
+        <div>This is User home page</div>
       </div>
     </Layout>
   );
