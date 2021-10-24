@@ -1,8 +1,12 @@
 // react
+import React, { useRef, useState } from "react";
 
 // nextjs
 
 // react icons
+
+// in-houser hooks
+import { useInput } from "../../lib/hooks";
 
 import {
   BiSearch,
@@ -15,14 +19,39 @@ import {
 // sass styles
 import styles from "../../styles/header/rightNav.module.sass";
 
-function SearchInput() {
+function FullSearch() {
+  const conRef = useRef();
+  const [{ value, onChange }, reset] = useInput("");
+  const onFocus = () => {
+    conRef.current.style.backgroundColor = "#fff";
+    conRef.current.style.color = "#172b4d";
+    conRef.current.style.borderColor = "transparent";
+  };
+
+  const onBlur = () => {
+    conRef.current.style.backgroundColor = "#3588b9";
+    conRef.current.style.color = "white";
+    conRef.current.style.borderColor = "#7bb1d2";
+  };
+
   return (
-    <div className={styles.searchInputContainer}>
+    <div ref={conRef} className={styles.fullSearchContainer}>
       <BiSearch />
-      <input type="search" placeholder="Search..." />
+      <input
+        type="search"
+        value={value}
+        onChange={onChange}
+        placeholder="Search..."
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
       <div className={styles.searchInputRight}>
-        <BiUpArrowAlt />
-        <BiX />
+        <button type="button">
+          <BiUpArrowAlt />
+        </button>
+        <button type="button">
+          <BiX />
+        </button>
       </div>
     </div>
   );
@@ -35,7 +64,7 @@ export default function RightNav() {
         <BiSearch />
       </button>
 
-      <SearchInput />
+      <FullSearch />
 
       <button type="button" className={styles.infoButton}>
         <BiInfoCircle />

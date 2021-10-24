@@ -3,24 +3,24 @@
 @use "../theme"
 
 .leftNavContainer
-    display: flex 
-    flex-flow: row nowrap 
-    align-items: center 
-    justify-content: flex-start 
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: flex-start
 
     & > * + *
         margin-inline-start: 6px
 
-.menuButton 
+.menuButton
     width: 32px
     height: 32px
-    border: none 
+    border: none
     outline: none
     border-radius: 3px
-    background-color: transparent 
+    background-color: transparent
     padding: 6px
 
-    &:hover 
+    &:hover
         cursor: pointer
         background-color: theme.$bg-nav-button-hover
 
@@ -29,83 +29,96 @@
     height: 100%
     padding: 4px
     background-color: transparent
-    display: flex 
-    flex-flow: column 
-    align-items: stretch 
+    display: flex
+    flex-flow: column
+    align-items: stretch
     justify-content: space-between
 
-.dotRow 
-    display: flex 
-    flex-flow: row nowrap 
-    align-items: center 
+.dotRow
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
     justify-content: space-between
 
-    & > div 
-        width: 3px 
-        height: 3px 
+    & > div
+        width: 3px
+        height: 3px
         background-color: theme.$trello-white
 
-
 .trelloLogo
-    position: relative 
+    position: relative
     width: 75px
     height: 31px
 
 .createButton
-    width: 32px 
+    width: 32px
     height: 32px
-    border: none 
-    outline: none 
+    border: none
+    outline: none
     border-radius: 3px
     background-color: theme.$bg-nav-button
-    display: flex 
-    align-items: center 
-    justify-content: center 
+    display: flex
+    align-items: center
+    justify-content: center
     transition: all .3s ease
 
-    & > svg 
+    & > svg
         width: 24px
         height: 24px
         color: theme.$trello-white
 
-    &:hover 
+    &:hover
         cursor: pointer
         background-color: theme.$bg-nav-button-hover
 
-
 .activitiesContainer
     height: 32px
-    display: flex 
-    flex-flow: row nowrap 
-    align-items: center 
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
     justify-content: space-between
 
     & > * + *
         margin-inline-start: 5px
 
-    & > button 
-        height: 100% 
-        border: none 
+    & > button
+        height: 100%
+        border: none
         outline: none
         border-radius: 3px
         background-color: transparent
         color: theme.$trello-white
         padding: 10px
-        display: flex 
-        flex-flow: row nowrap 
-        align-items: center 
-        justify-content: space-bewteen  
-        font-size: 14px 
-        font-weight: 400 
+        flex-flow: row nowrap
+        align-items: center
+        justify-content: space-bewteen
+        font-size: 14px
+        font-weight: 400
         line-height: 32px
         transition: all .3s ease
 
-        & > * + * 
+        & > * + *
             margin-inline-start: 10px
 
         & > svg
-            height: 16px 
+            height: 16px
             width: 16x
-        &:hover 
+        &:hover
             cursor: pointer
             background-color: theme.$bg-nav-button-hover
+
+.workspaces
+    display: flex
+.recent, .more
+    display: none
+
+// --------------------------------------------------
+// media condition 
+
+@media screen and (min-width: 751px)
+    .recent
+        display: flex
+
+@media screen and (min-width: 1000px)
+    .more
+        display: flex
