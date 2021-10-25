@@ -1,0 +1,41 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.contentContainer
+    margin-block-start: 60px
+
+.asideLeft
+    display: none
+    padding: 0 15px
+    width: 294px
+
+.workspacesContainer
+    padding: 0 15px
+
+    & > div + div
+        margin-block-start: 40px
+
+.workspacesTitle
+    margin: 20px 0
+    text-align: left
+    color: theme.$text-h3-title
+    font-size: 16px
+    line-height: 1.5
+    font-weight: 700
+    text-transform: uppercase
+
+// --------------------------------------------------
+// media conditions 
+@media screen and (min-width: 600px)
+    .contentContainer
+        display: flex
+        flex-flow: row nowrap
+        align-items: flex-start
+        justify-content: space-between
+
+    .workspacesContainer
+        flex: 1
+
+    .asideLeft
+        display: flex

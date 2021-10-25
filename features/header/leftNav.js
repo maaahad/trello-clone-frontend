@@ -34,15 +34,15 @@ function NineDots() {
 function Activities() {
   return (
     <div className={styles.activitiesContainer}>
-      <button type="button">
+      <button type="button" className={styles.workspaces}>
         <span>Workspaces</span>
         <VscChevronDown />
       </button>
-      <button type="button">
+      <button type="button" className={styles.recent}>
         <span>Recent</span>
         <VscChevronDown />
       </button>
-      <button type="button">
+      <button type="button" className={styles.more}>
         <span>More</span>
         <VscChevronDown />
       </button>

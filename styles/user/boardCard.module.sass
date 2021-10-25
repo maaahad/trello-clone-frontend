@@ -1,0 +1,43 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.boardCardContainer
+    height: 100%
+    width: 100%
+    position: relative
+    background-color: theme.$bg-account-board-card
+    background-image: url("/user/board-card-bg.jpg")
+    background-size: cover
+
+    &:hover
+        & > .starBoard
+            left: calc(100% - 30px)
+
+.boardTitle
+    color: theme.$trello-white
+    font-size: 16px
+    line-height: 1.5
+    font-weight: 700
+
+.starBoard
+    background-color: transparent
+    outline: none
+    border: none
+    color: theme.$trello-white
+    position: absolute
+    bottom: 10px
+    left: 100%
+    transition: all .15s ease-in
+
+    & > svg
+        height: 16px
+        width: 16px
+        opacity: .75
+        transition: all .15s ease-in
+
+    &:hover
+        cursor: pointer
+        & > svg
+            height: 18px
+            width: 18px
