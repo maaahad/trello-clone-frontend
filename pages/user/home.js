@@ -2,6 +2,7 @@
 
 // nextjs
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 // react-redux
 import { useSelector, useDispatch } from "react-redux";
@@ -18,6 +19,7 @@ import {
 // in-house components
 import Layout from "../../features/layout";
 import WorkspaceCard from "../../features/user/workspaceCard";
+import HomeLeft from "../../features/user/homeLeft";
 
 // in-house hooks
 
@@ -25,25 +27,6 @@ import WorkspaceCard from "../../features/user/workspaceCard";
 
 // sass styles
 import styles from "../../styles/user/home.module.sass";
-
-// function Workspace() {
-//   return (
-//     <div className={styles.workspaceContainer}>
-//       <div className={styles.workspaceMetas}>
-//         <div>W</div>
-//         <h3 className={styles.workspaceTitle}>Title of the workspaces</h3>
-//         <div className={styles.workspaceMetaOptions}>
-//           <button>Boards</button>
-//           <button>Workspace table</button>
-//           <button>Members</button>
-//           <button>Settings</button>
-//           <button>Upgrade</button>
-//         </div>
-//       </div>
-//       <div className={styles.boardCardsContainer}>Boards</div>
-//     </div>
-//   );
-// }
 
 export default function UserHome() {
   // const currentUser = useSelector(selectCurrentUser);
@@ -58,12 +41,25 @@ export default function UserHome() {
   return (
     <Layout title="Boards | Trello" nav={true}>
       <div className={styles.contentContainer}>
-        <div className={styles.asideLeft}>Aside left</div>
+        <div className={styles.asideLeft}>
+          <HomeLeft />
+        </div>
         <div className={styles.workspacesContainer}>
           <h3 className={styles.workspacesTitle}>Your Workspaces</h3>
           <WorkspaceCard />
           <WorkspaceCard />
           <WorkspaceCard />
+          <WorkspaceCard />
+          <WorkspaceCard />
+          <WorkspaceCard />
+          <div className={styles.viewClosedBoards}>
+            {/* || todo : add links ot all closed books */}
+            <Link href="/" passHref>
+              <a className={styles.viewClosedBoardsAnchor}>
+                View all closed boards
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
     </Layout>

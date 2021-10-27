@@ -3,15 +3,25 @@
 @use "../theme"
 
 .contentContainer
-    margin-block-start: 60px
+    margin-block-start: 44px
+    position: relative
+    background-color: theme.$bg-account
 
 .asideLeft
     display: none
-    padding: 0 15px
+    padding: 44px 15px 10px 15px
     width: 294px
+    position: sticky
+    top: 44px
+    left: 0
 
 .workspacesContainer
-    padding: 0 15px
+    padding: 56px 15px 10px 15px
+    position: sticky
+    top: 0
+    left: 294px
+    z-index: theme.$zindex-content
+    overflow-y: auto
 
     & > div + div
         margin-block-start: 40px
@@ -24,6 +34,31 @@
     line-height: 1.5
     font-weight: 700
     text-transform: uppercase
+
+.viewClosedBoards
+    height: 32px
+    width: 200px
+    color: theme.$text-h3-subtitle
+    font-size: 14px
+    line-height: 1.5
+    font-weight: 400
+    display: flex
+    align-items: center
+    justify-content: center
+    background-color: theme.$bg-account-anchor-button
+    border-radius: 3px
+
+    .viewClosedBoardsAnchor
+        display: block
+        width: 100%
+        height: 100%
+        font: inherit
+        display: flex
+        align-items: center
+        justify-content: center
+        &:hover
+            cursor: pointer
+            background-color: theme.$bg-account-anchor-button-hover
 
 // --------------------------------------------------
 // media conditions 
@@ -38,4 +73,4 @@
         flex: 1
 
     .asideLeft
-        display: flex
+        display: block
