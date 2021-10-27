@@ -1,0 +1,72 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.asideLeftContentContainer
+    display: flex
+    flex-flow: column nowrap
+    align-items: stretch
+    justify-content: flex-start
+
+.top
+    display: flex
+    flex-flow: column nowrap
+    align-items: stretch
+    justify-content: flex-start
+
+    & > * + *
+        margin-block-start: 10px
+    & > a
+        height: 32px
+        width: 100%
+        padding: 6px 8px 6px 8px
+        background-color: transparent
+        display: flex
+        flex-flow: row nowrap
+        align-items: center
+        justify-content: flex-start
+        border-radius: 4px
+        color: theme.$text-h3-subtitle
+        font-size: 14px
+        line-height: 1.5
+        font-weight: bold
+
+        & > * + *
+            margin-inline-start: 8px
+
+        & > svg
+            width: 14px
+            height: 14px
+            color: inherit
+        &:active
+            background-color: theme.$bg-account-aside-left-anchor-active
+            color: theme.$text-account-aside-left-anchor-active
+        &:hover
+            cursor: pointer
+            background-color: theme.$bg-account-aside-left-anchor-hover
+
+.workspaces
+    margin: 24px 0
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: space-between
+    padding-inline-start: 6px
+    color: theme.$trello-form-text-primary
+    & > div
+        font-size: 12px
+        line-height: 1.33
+        font-weight: 600
+    & > button
+        outline: none
+        border: none
+        background-color: transparent
+        display: flex
+        align-items: center
+        justify-content: center
+        padding: 3px
+        border-radius: 3px
+
+        &:hover
+            cursor: pointer
+            background-color: theme.$bg-account-aside-left-anchor-hover
