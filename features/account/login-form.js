@@ -128,7 +128,7 @@ export default function LoginForm() {
         password: form.elements.password.value,
       };
 
-      jsonFetch(`${rootUrl}/account/user/login`, "put", body).then(
+      jsonFetch(`${rootUrl}/auth/login/inhouse`, "put", body).then(
         ({ user, workspaces }) => {
           // we need to store the user and workspaces to the redux store
           dispatch(userLoggedIn(user));

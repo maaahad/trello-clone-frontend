@@ -29,9 +29,9 @@ import HomeLeft from "../../features/user/homeLeft";
 import styles from "../../styles/user/home.module.sass";
 
 export default function UserHome() {
-  // const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser);
 
-  // console.log("Current User : ", currentUser);
+  console.log("Current User : ", currentUser);
   // here we use the current user to fetch workspaces for the uesr using SWR
   //  user information is passed as the query string
   const router = useRouter();

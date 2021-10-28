@@ -72,10 +72,11 @@ function Form({
       subscribed: form.elements.subscribed.checked,
     };
 
-    jsonFetch(`${rootUrl}/account/user/signup`, "post", body).then(
-      ({ user, workspaces }) => {
-        // we need to store the user and all of its workspaces to redux store
-        // route to user home page
+    console.log("rooturl: ", rootUrl);
+
+    jsonFetch(`${rootUrl}/auth/signup/inhouse`, "post", body).then(
+      (jsonResponse) => {
+        console.log(jsonResponse);
         router.push({
           pathname: "/user/home",
         });
@@ -84,9 +85,9 @@ function Form({
   };
 
   // prefetch the /user/home
-  useEffect(() => {
-    router.prefetch("/user/home");
-  }, []);
+  // useEffect(() => {
+  //   router.prefetch("/user/home");
+  // }, []);
 
   return (
     <form
