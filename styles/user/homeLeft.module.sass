@@ -46,12 +46,12 @@
             background-color: theme.$bg-account-aside-left-anchor-hover
 
 .workspaces
-    margin: 24px 0
+    margin: 10px 0 5px 0
     display: flex
     flex-flow: row nowrap
     align-items: center
     justify-content: space-between
-    padding-inline-start: 6px
+    padding: 6px
     color: theme.$trello-form-text-primary
     & > div
         font-size: 12px
@@ -70,3 +70,59 @@
         &:hover
             cursor: pointer
             background-color: theme.$bg-account-aside-left-anchor-hover
+
+.workspacesList
+    display: flex
+    flex-flow: column nowrap
+    align-items: stretch
+    justify-content: flex-start
+
+// workspace toggler
+.workspaceToggler
+    height: 45px
+    width: 100%
+    background-color: transparent
+    border-radius: 5px
+    padding: 6px
+
+    &:hover
+        cursor: pointer
+        background-color: theme.$bg-account-aside-left-anchor-hover
+
+.workspaceToggler, .workspaceTogglerTitle
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: space-between
+
+.workspaceTogglerTitle
+    justify-content: flex-start
+    font-size: 14px
+    line-height: 1.5
+    font-weight: bold
+    & > * + *
+        margin-inline-start: 5px
+
+    .workspaceInitial
+        width: 21px
+        height: 21px
+        background: linear-gradient(#cc4223, #cb7d25)
+        display: flex
+        align-items: center
+        justify-content: center
+        border-radius: 2px
+        color: theme.$trello-white
+        font: inherit
+    .workspaceTitle
+        color: theme.$text-h3-subtitle
+        font: inherit
+
+.workspaceToggler > .downArrow
+    display: flex
+    align-items: center
+    justify-content: center
+
+.toggleMenu
+    margin-block-start: 10px
+    & + *
+        margin-block-start: 10px

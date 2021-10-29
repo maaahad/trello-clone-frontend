@@ -2,7 +2,6 @@
 import React, { useState, useReducer, useEffect } from "react";
 
 // nextjs
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -10,7 +9,7 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 
 // action creator and selector
-import { getUserIn, resetStatus } from "../user/userSlice";
+import { login } from "../user/userSlice";
 
 // react-icons
 import { FcGoogle } from "react-icons/fc";
@@ -21,7 +20,6 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 // in-house hooks
 import { useInput } from "../../lib/hooks";
 // in-houser libs
-import { jsonFetch } from "../../lib/backend-fetch";
 
 // sass styles
 import styles from "../../styles/account/login-form.module.sass";
@@ -90,18 +88,6 @@ function ThirdPartyAuth() {
   );
 }
 
-// Should be moved to its's own file
-function LanguageSelect() {
-  const [languageProps, ,] = useInput("english-uk");
-  return (
-    <select value={languageProps.value} onChange={languageProps.onChange}>
-      <option value="english-uk">English (UK)</option>
-      <option value="english-us">English (US)</option>
-      <option value="swedish">Swedish</option>
-    </select>
-  );
-}
-
 export default function LoginForm() {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -112,11 +98,6 @@ export default function LoginForm() {
     (loginWithSSO) => !loginWithSSO,
     false
   );
-
-  // reseting fetchStatus just after loading the component
-  useEffect(() => {
-    dispatch(resetStatus());
-  });
 
   //   login logic should be passed from here, so that it can decided between email + password and SSO
   const onLoginFormSubmit = (event) => {
@@ -135,7 +116,7 @@ export default function LoginForm() {
 
       if (fetchStatus === "idle") {
         dispatch(
-          getUserIn({
+          login({
             url: `${rootUrl}/auth/login/inhouse`,
             method: "put",
             body,

@@ -17,44 +17,43 @@ const initialState = {
 const fetchThunk = ({ url, method, body }) => {
   return jsonFetch(url, method, body);
 };
-export const getUserIn = createAsyncThunk("user/getUserIn", fetchThunk);
-
-export const logUserOut = createAsyncThunk("user/logUserOut", fetchThunk);
+export const signup = createAsyncThunk("user/signup", fetchThunk);
+export const login = createAsyncThunk("user/login", fetchThunk);
+export const logout = createAsyncThunk("user/logout", fetchThunk);
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    // this may re-render a component .... DOUBLE CHECK
-    resetStatus(state) {
-      console.log("I am here in resetStatus");
-      state.status = "idle";
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(getUserIn.pending, (state) => {
+      .addCase(signup.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(getUserIn.fulfilled, (state, action) => {
+      .addCase(signup.fulfilled, (state, action) => {
         state.status = "succeeded";
         // in this case user.loggedin should be true
         state.profile = action.payload;
       })
-      .addCase(getUserIn.rejected, (state, action) => {
+      .addCase(signup.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(logUserOut.pending, (state) => {
+      .addCase(login.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(logUserOut.fulfilled, (state) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.profile = null;
+        state.profile = action.payload;
       })
-      .addCase(logUserOut.rejected, (state, action) => {
+      .addCase(login.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.status = "idle";
+        state.profile = null;
+        state.error = null;
       });
   },
 });
@@ -64,6 +63,5 @@ export const selectCurrentProfile = (state) => state.user.profile;
 export const selectCurrentUser = (state) => state.user.profile.user;
 
 // action creators
-export const { resetStatus } = userSlice.actions;
 
 export default userSlice.reducer;
