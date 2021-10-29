@@ -9,7 +9,10 @@ import { useRouter } from "next/router";
 // react-icons
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { VscChevronDown } from "react-icons/vsc";
+
+// react-redux
+import { useSelector, useDispatch } from "react-redux";
+import { getUserIn, resetStatus } from "../user/userSlice";
 
 // in-house components
 
@@ -34,7 +37,14 @@ function Form({
   const [passwordProps, resetPassword] = useInput("");
   const [subscriptionProps, resetSubscription] = useInput(false);
 
+  const dispatch = useDispatch();
+  const fetchStatus = useSelector((state) => state.user.status);
   const router = useRouter();
+
+  // reseting fetchStatus just after loading the component
+  useEffect(() => {
+    dispatch(resetStatus());
+  });
 
   const onEmailChange = (event) => {
     // controlling the display of thirdpartyauth based on user input to email field
@@ -72,16 +82,19 @@ function Form({
       subscribed: form.elements.subscribed.checked,
     };
 
-    console.log("rooturl: ", rootUrl);
-
-    jsonFetch(`${rootUrl}/auth/signup/inhouse`, "post", body).then(
-      (jsonResponse) => {
-        console.log(jsonResponse);
+    if (fetchStatus === "idle") {
+      dispatch(
+        getUserIn({
+          url: `${rootUrl}/auth/signup/inhouse`,
+          method: "post",
+          body,
+        })
+      ).then(() => {
         router.push({
           pathname: "/user/home",
         });
-      }
-    );
+      });
+    }
   };
 
   // prefetch the /user/home

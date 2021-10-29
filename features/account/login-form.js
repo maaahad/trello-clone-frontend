@@ -7,15 +7,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 // react-redux
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // action creator and selector
-import { userLoggedIn } from "../users/usersSlice";
+import { getUserIn, resetStatus } from "../user/userSlice";
 
 // react-icons
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { VscChevronDown } from "react-icons/vsc";
 
 // in-house components
 
@@ -106,12 +105,18 @@ function LanguageSelect() {
 export default function LoginForm() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const fetchStatus = useSelector((state) => state.user.status);
   // or and thirdparty auth only visible if the user does not start providing value for email
   const [thirdPartyAuth, setThirdPartyAuth] = useState(true);
   const [loginWithSSO, toggleLoginWithSSO] = useReducer(
     (loginWithSSO) => !loginWithSSO,
     false
   );
+
+  // reseting fetchStatus just after loading the component
+  useEffect(() => {
+    dispatch(resetStatus());
+  });
 
   //   login logic should be passed from here, so that it can decided between email + password and SSO
   const onLoginFormSubmit = (event) => {
@@ -128,17 +133,19 @@ export default function LoginForm() {
         password: form.elements.password.value,
       };
 
-      jsonFetch(`${rootUrl}/auth/login/inhouse`, "put", body).then(
-        ({ user, workspaces }) => {
-          // we need to store the user and workspaces to the redux store
-          dispatch(userLoggedIn(user));
+      if (fetchStatus === "idle") {
+        dispatch(
+          getUserIn({
+            url: `${rootUrl}/auth/login/inhouse`,
+            method: "put",
+            body,
+          })
+        ).then(() => {
           router.push({
             pathname: "/user/home",
           });
-        }
-      );
-
-      // we need a redux store to hold the current user
+        });
+      }
     }
   };
 
