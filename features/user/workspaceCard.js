@@ -18,8 +18,8 @@ export default function WorkspaceCard({ workspace }) {
     <div className={styles.workspaceContainer}>
       <div className={styles.workspace}>
         <div className={styles.workspaceMeta}>
-          <div className={styles.workspaceInitial}>w</div>
-          <h3 className={styles.workspaceTitle}>Title of the workspaces</h3>
+          <div className={styles.workspaceInitial}>{workspace.title[0]}</div>
+          <h3 className={styles.workspaceTitle}>{workspace.title}</h3>
         </div>
         <div className={styles.workspaceOptions}>
           <Link href="/" passHref>
@@ -37,7 +37,7 @@ export default function WorkspaceCard({ workspace }) {
           <Link href="/" passHref>
             <a>
               <BiUser />
-              <span>Members (1)</span>
+              <span>Members ({workspace.members.length})</span>
             </a>
           </Link>
           <Link href="/" passHref>
@@ -55,10 +55,9 @@ export default function WorkspaceCard({ workspace }) {
         </div>
       </div>
       <div className={styles.boardCardsContainer}>
-        <BoardCard />
-        <BoardCard />
-        <BoardCard />
-        <BoardCard />
+        {workspace.boards.map((board, index) => (
+          <BoardCard key={index} board={board} />
+        ))}
         <button type="button" className={styles.createNewBoard}>
           <p>Create new board</p>
         </button>

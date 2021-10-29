@@ -8,11 +8,7 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 
 // action creator and selector
-import {
-  userLoggedIn,
-  userLoggedOut,
-  selectCurrentUser,
-} from "../../features/users/usersSlice";
+import { selectCurrentProfile } from "../../features/user/userSlice";
 
 // react-icons
 
@@ -29,39 +25,38 @@ import HomeLeft from "../../features/user/homeLeft";
 import styles from "../../styles/user/home.module.sass";
 
 export default function UserHome() {
-  // const currentUser = useSelector(selectCurrentUser);
+  const currentProfile = useSelector(selectCurrentProfile);
+  const fetchStatus = useSelector((state) => state.user.status);
+  const error = useSelector((state) => state.user.error);
 
-  // console.log("Current User : ", currentUser);
-  // here we use the current user to fetch workspaces for the uesr using SWR
-  //  user information is passed as the query string
-  const router = useRouter();
-
-  // console.log("Query Parameter : ", router.query);
-  // if (!currentUser) return <h1> User home page .... coming soon ....</h1>;
-  return (
-    <Layout title="Boards | Trello" nav={true}>
-      <div className={styles.contentContainer}>
-        <div className={styles.asideLeft}>
-          <HomeLeft />
-        </div>
-        <div className={styles.workspacesContainer}>
-          <h3 className={styles.workspacesTitle}>Your Workspaces</h3>
-          <WorkspaceCard />
-          <WorkspaceCard />
-          <WorkspaceCard />
-          <WorkspaceCard />
-          <WorkspaceCard />
-          <WorkspaceCard />
-          <div className={styles.viewClosedBoards}>
-            {/* || todo : add links ot all closed books */}
-            <Link href="/" passHref>
-              <a className={styles.viewClosedBoardsAnchor}>
-                View all closed boards
-              </a>
-            </Link>
+  let content = null;
+  if (fetchStatus === "loading") content = <h1>loading ...</h1>;
+  else if (fetchStatus === "failed") content = <h1>{error}</h1>;
+  else if (fetchStatus === "succeeded" && currentProfile) {
+    content = (
+      <Layout title="Boards | Trello" nav={true}>
+        <div className={styles.contentContainer}>
+          <div className={styles.asideLeft}>
+            <HomeLeft workspaces={currentProfile.workspaces} />
+          </div>
+          <div className={styles.workspacesContainer}>
+            <h3 className={styles.workspacesTitle}>Your Workspaces</h3>
+            {currentProfile.workspaces.map((wp, index) => (
+              <WorkspaceCard key={index} workspace={wp} />
+            ))}
+            <div className={styles.viewClosedBoards}>
+              {/* || todo : add links ot all closed books */}
+              <Link href="/" passHref>
+                <a className={styles.viewClosedBoardsAnchor}>
+                  View all closed boards
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </Layout>
-  );
+      </Layout>
+    );
+  }
+
+  return content;
 }

@@ -9,7 +9,10 @@ import { useRouter } from "next/router";
 // react-icons
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { VscChevronDown } from "react-icons/vsc";
+
+// react-redux
+import { useSelector, useDispatch } from "react-redux";
+import { signup } from "../user/userSlice";
 
 // in-house components
 
@@ -34,6 +37,8 @@ function Form({
   const [passwordProps, resetPassword] = useInput("");
   const [subscriptionProps, resetSubscription] = useInput(false);
 
+  const dispatch = useDispatch();
+  const fetchStatus = useSelector((state) => state.user.status);
   const router = useRouter();
 
   const onEmailChange = (event) => {
@@ -72,15 +77,19 @@ function Form({
       subscribed: form.elements.subscribed.checked,
     };
 
-    jsonFetch(`${rootUrl}/account/user/signup`, "post", body).then(
-      ({ user, workspaces }) => {
-        // we need to store the user and all of its workspaces to redux store
-        // route to user home page
+    if (fetchStatus === "idle") {
+      dispatch(
+        signup({
+          url: `${rootUrl}/auth/signup/inhouse`,
+          method: "post",
+          body,
+        })
+      ).then(() => {
         router.push({
           pathname: "/user/home",
         });
-      }
-    );
+      });
+    }
   };
 
   // prefetch the /user/home

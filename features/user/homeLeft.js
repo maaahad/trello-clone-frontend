@@ -1,17 +1,44 @@
 // react
+import React, { useState, useReducer } from "react";
 
 // nextjs
 import Link from "next/link";
 
 // react icons
-// import {  } from "react-icons/bi";
-import { VscAdd } from "react-icons/vsc";
+import { VscAdd, VscChevronDown, VscChevronUp } from "react-icons/vsc";
 import { FaTrello } from "react-icons/fa";
 
 // sass styles
 import styles from "../../styles/user/homeLeft.module.sass";
 
-export default function HomeLeft() {
+function WorkspaceToggler({ workspace }) {
+  const [menu, toggleMenu] = useReducer((toggle) => !toggle, false);
+
+  return (
+    <>
+      <div className={styles.workspaceToggler} onClick={toggleMenu}>
+        <div className={styles.workspaceTogglerTitle}>
+          <div className={styles.workspaceInitial}>{workspace.title[0]}</div>
+          <div className={styles.workspaceTitle}>
+            {workspace.title.slice(0, 15)}
+          </div>
+        </div>
+        <div className={styles.downArrow}>
+          {menu ? <VscChevronUp /> : <VscChevronDown />}
+        </div>
+      </div>
+      {menu && (
+        <div className={styles.toggleMenu}>
+          <div>option one</div>
+          <div>option one</div>
+          <div>option one</div>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default function HomeLeft({ workspaces }) {
   // || todo : control the color active link in JS
   // may be by a custom link using userRouter hook to pick the
   // active link
@@ -43,17 +70,12 @@ export default function HomeLeft() {
         </button>
       </div>
       <div className={styles.workspacesList}>
-        {/* the following should have a separate Reuseable component */}
-        <div>
-          <div>W</div>
-          <div>Workspaces One</div>
-          <div>downarrow</div>
-        </div>
-        <div>
-          <div>W</div>
-          <div>Workspaces One</div>
-          <div>downarrow</div>
-        </div>
+        {workspaces.map((wp, index) => (
+          <WorkspaceToggler key={index} workspace={wp} />
+        ))}
+        {workspaces.map((wp, index) => (
+          <WorkspaceToggler key={index} workspace={wp} />
+        ))}
       </div>
     </aside>
   );
