@@ -1,0 +1,81 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.workspaceDropdownMenuContainer
+    width: 100%
+    height: auto
+    // display: flex
+    // flex-flow: column nowrap
+    // align-items: stretch
+    // justify-content: flex-start
+    & > * + *
+        margin-block-start: 10px
+
+.menuOption
+    position: relative
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: space-between
+    outline: none
+    border: none
+    border-radius: 4px
+    background-color: transparent
+    height: 36px
+    width: 100%
+    padding-inline-start: 28px
+    color: theme.$account-text-secondary
+    font-size: 12px
+    line-height: 1.6
+    font-weight: 400
+
+    & svg
+        width: 14px
+        height: 14px
+
+    &:hover
+        background-color: theme.$bg-account-aside-left-anchor-hover
+        color: theme.$account-text-secondary-hover
+        cursor: pointer
+
+        & > .menuOptionRight
+            right: 15px
+        & > .menuOptionRight > svg
+            display: inline-block
+            opacity: 1
+
+.menuOptionLeft
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: flex-start
+    font: inherit
+    & > * + *
+        margin-inline-start: 10px
+
+.menuOptionRight
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: center
+    position: absolute
+    right: 0
+    transition: all .15s ease-in
+    & > svg
+        display: none
+        transition: all .15s ease-in
+        opacity: 0
+        width: 18px
+        height: 18px
+
+    & > span
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        width: 28px
+        height: 24px
+        background-color: theme.$account-text-special-purple
+        border-radius: 20px
+        color: theme.$trello-white
+        font-weight: normal

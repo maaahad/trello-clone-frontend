@@ -38,12 +38,16 @@
             width: 14px
             height: 14px
             color: inherit
-        &:active
-            background-color: theme.$bg-account-aside-left-anchor-active
-            color: theme.$text-account-aside-left-anchor-active
+
         &:hover
             cursor: pointer
             background-color: theme.$bg-account-aside-left-anchor-hover
+
+        &:focus
+            // This should be done using js
+            // to match the current url using useRouter from NextJS 
+            background-color: theme.$bg-account-aside-left-anchor-active
+            color: theme.$text-account-aside-left-anchor-active
 
 .workspaces
     margin: 10px 0 5px 0
@@ -77,8 +81,8 @@
     align-items: stretch
     justify-content: flex-start
 
-// workspace toggler
-.workspaceToggler
+// workspace dropdown toggler
+.workspaceDropdownToggler
     height: 45px
     width: 100%
     background-color: transparent
@@ -89,13 +93,13 @@
         cursor: pointer
         background-color: theme.$bg-account-aside-left-anchor-hover
 
-.workspaceToggler, .workspaceTogglerTitle
+.workspaceDropdownToggler, .workspaceTitle
     display: flex
     flex-flow: row nowrap
     align-items: center
     justify-content: space-between
 
-.workspaceTogglerTitle
+.workspaceTitle
     justify-content: flex-start
     font-size: 14px
     line-height: 1.5
@@ -117,12 +121,12 @@
         color: theme.$text-h3-subtitle
         font: inherit
 
-.workspaceToggler > .downArrow
+.workspaceDropdownToggler > .downArrow
     display: flex
     align-items: center
     justify-content: center
 
-.toggleMenu
+.dropdownMenu
     margin-block-start: 10px
     & + *
         margin-block-start: 10px

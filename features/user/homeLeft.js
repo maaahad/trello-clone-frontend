@@ -8,16 +8,19 @@ import Link from "next/link";
 import { VscAdd, VscChevronDown, VscChevronUp } from "react-icons/vsc";
 import { FaTrello } from "react-icons/fa";
 
+// inhouse components
+import WorkspaceDropdownMenu from "./workspaceDropdownMenu";
+
 // sass styles
 import styles from "../../styles/user/homeLeft.module.sass";
 
-function WorkspaceToggler({ workspace }) {
+function WorkspaceDropdownToggler({ workspace }) {
   const [menu, toggleMenu] = useReducer((toggle) => !toggle, false);
 
   return (
     <>
-      <div className={styles.workspaceToggler} onClick={toggleMenu}>
-        <div className={styles.workspaceTogglerTitle}>
+      <div className={styles.workspaceDropdownToggler} onClick={toggleMenu}>
+        <div className={styles.workspaceTitle}>
           <div className={styles.workspaceInitial}>{workspace.title[0]}</div>
           <div className={styles.workspaceTitle}>
             {workspace.title.slice(0, 15)}
@@ -28,10 +31,8 @@ function WorkspaceToggler({ workspace }) {
         </div>
       </div>
       {menu && (
-        <div className={styles.toggleMenu}>
-          <div>option one</div>
-          <div>option one</div>
-          <div>option one</div>
+        <div className={styles.dropdownMenu}>
+          <WorkspaceDropdownMenu />
         </div>
       )}
     </>
@@ -71,10 +72,10 @@ export default function HomeLeft({ workspaces }) {
       </div>
       <div className={styles.workspacesList}>
         {workspaces.map((wp, index) => (
-          <WorkspaceToggler key={index} workspace={wp} />
+          <WorkspaceDropdownToggler key={index} workspace={wp} />
         ))}
         {workspaces.map((wp, index) => (
-          <WorkspaceToggler key={index} workspace={wp} />
+          <WorkspaceDropdownToggler key={index} workspace={wp} />
         ))}
       </div>
     </aside>
