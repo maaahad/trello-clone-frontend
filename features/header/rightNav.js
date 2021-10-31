@@ -63,13 +63,12 @@ function FullSearch() {
   );
 }
 
-export default function RightNav() {
+export default function RightNav({ toggleUserDropdownMenu = (f) => f }) {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   // successful logout will automatically reset state.user along with state.user.status
   const fetchStatus = useSelector((state) => state.user.status);
   const router = useRouter();
-  console.log("current user: ", currentUser, fetchStatus);
 
   const onLogout = (event) => {
     const rootUrl = process.env.NEXT_PUBLIC_TRELLO_BACKEND_URL_ROOT;
@@ -101,8 +100,13 @@ export default function RightNav() {
       <button type="button" className={styles.notificationButton}>
         <BiBell />
       </button>
-      <button type="button" className={styles.userButton} onClick={onLogout}>
-        MA
+      <button
+        type="button"
+        className={styles.userButton}
+        onClick={toggleUserDropdownMenu}
+      >
+        {/* || todo : The following should be initial of each name, not the initial of firstname */}
+        {currentUser.name.slice(0, 2).toUpperCase()}
       </button>
     </div>
   );

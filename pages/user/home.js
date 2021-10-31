@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 // react-redux
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 // action creator and selector
 import { selectCurrentProfile } from "../../features/user/userSlice";
