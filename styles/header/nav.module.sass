@@ -6,17 +6,23 @@
     height: 100%
     display: flex
     flex-flow: row nowrap
-    align-items: center 
+    align-items: center
     justify-content: space-between
 
-
 .leftNav, .rightNav
-    display: flex 
-    flex-flow: row nowrap 
-    align-items: center 
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
 
-.leftnav 
-    justify-content: flex-start 
+.leftnav
+    justify-content: flex-start
 
 .rightNav
     justify-content: flex-end
+
+.userDropdownMenuContainer
+    position: fixed
+    top: 49px
+    right: 5px
+    background-color: theme.$trello-white
+    @include theme.dropdown-menu-shadow

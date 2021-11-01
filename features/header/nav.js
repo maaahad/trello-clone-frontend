@@ -1,12 +1,13 @@
 // import
 // react
-import React from "react";
+import React, { useReducer } from "react";
 
 // react icons
 // nextjs
 // in-house components
 import LeftNav from "./leftNav";
 import RightNav from "./rightNav";
+import UserDropdownMenu from "./userDropdownMenu";
 
 // in-house hooks
 
@@ -15,31 +16,28 @@ import RightNav from "./rightNav";
 // sass styles
 import styles from "../../styles/header/nav.module.sass";
 
-function DotRow() {
-  return (
-    <div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  );
-}
+// react-redux
+import { useSelector } from "react-redux";
 
-function MenuButton() {
-  return (
-    <div className={styles.menuButton}>
-      <DotRow />
-      <DotRow />
-      <DotRow />
-    </div>
-  );
-}
+//
+import { selectCurrentUser } from "../user/userSlice";
+
+// || we need a hook for toggle
 
 export default function Nav() {
+  const [displayUserDropdownMenu, toggleUserDropdownMenu] = useReducer(
+    (displayUserDropdownMenu) => !displayUserDropdownMenu,
+    false
+  );
   return (
     <nav className={styles.nav}>
       <LeftNav />
-      <RightNav />
+      <RightNav toggleUserDropdownMenu={toggleUserDropdownMenu} />
+      {displayUserDropdownMenu && (
+        <section className={styles.userDropdownMenuContainer}>
+          <UserDropdownMenu toggleUserDropdownMenu={toggleUserDropdownMenu} />
+        </section>
+      )}
     </nav>
   );
 }
