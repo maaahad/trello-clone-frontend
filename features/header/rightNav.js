@@ -7,10 +7,10 @@ import { useRouter } from "next/router";
 // react icons
 
 // react-redux
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 // thunk creator
-import { selectCurrentUser, logout } from "../user/userSlice";
+import { selectCurrentUser } from "../user/userSlice";
 // in-houser hooks
 import { useInput } from "../../lib/hooks";
 
@@ -64,28 +64,28 @@ function FullSearch() {
 }
 
 export default function RightNav({ toggleUserDropdownMenu = (f) => f }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   // successful logout will automatically reset state.user along with state.user.status
-  const fetchStatus = useSelector((state) => state.user.status);
-  const router = useRouter();
+  // const fetchStatus = useSelector((state) => state.user.status);
+  // const router = useRouter();
 
-  const onLogout = (event) => {
-    const rootUrl = process.env.NEXT_PUBLIC_TRELLO_BACKEND_URL_ROOT;
-    // it will do only the previous fetchStatus was succeeded
-    if (fetchStatus === "succeeded") {
-      dispatch(
-        logout({
-          url: `${rootUrl}/account/user/logout/${currentUser._id}`,
-          method: "put",
-        })
-      ).then(() => {
-        router.push({
-          pathname: "/",
-        });
-      });
-    }
-  };
+  // const onLogout = (event) => {
+  //   const rootUrl = process.env.NEXT_PUBLIC_TRELLO_BACKEND_URL_ROOT;
+  //   // it will do only the previous fetchStatus was succeeded
+  //   if (fetchStatus === "succeeded") {
+  //     dispatch(
+  //       logout({
+  //         url: `${rootUrl}/account/user/logout/${currentUser._id}`,
+  //         method: "put",
+  //       })
+  //     ).then(() => {
+  //       router.push({
+  //         pathname: "/",
+  //       });
+  //     });
+  //   }
+  // };
   return (
     <div className={styles.rightNavContainer}>
       <button type="button" className={styles.searchButton}>

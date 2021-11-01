@@ -107,14 +107,15 @@
             cursor: pointer
             background-color: theme.$bg-nav-button-hover
 
-.workspaces
-    display: flex
-.recent, .more
+.workspaces,.recent, .more
     display: none
 
 // --------------------------------------------------
 // media condition 
 
+@media screen and (min-width: 480px)
+    .workspaces
+        display: flex
 @media screen and (min-width: 751px)
     .recent
         display: flex
