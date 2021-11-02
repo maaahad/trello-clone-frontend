@@ -50,7 +50,7 @@ function Activities() {
   );
 }
 
-export default function LeftNav() {
+export default function LeftNav({ toggleCreateDropdownMenu = (f) => f }) {
   return (
     <div className={styles.leftNavContainer}>
       <button type="button" className={styles.menuButton}>
@@ -60,7 +60,11 @@ export default function LeftNav() {
         <Image src="/trello-logo.svg" layout="fill" objectFit="contain" />
       </div>
       <Activities />
-      <button type="button" className={styles.createButton}>
+      <button
+        type="button"
+        className={styles.createButton}
+        onClick={toggleCreateDropdownMenu}
+      >
         <BiPlus />
       </button>
     </div>
