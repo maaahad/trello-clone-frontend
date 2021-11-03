@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser, logout } from "../user/userSlice";
 
 // sass styles
-import styles from "../../styles/header/userDropdownMenu.module.sass";
+import styles from "../../styles/header/dropdownMenus.module.sass";
 
 export default function UserDropdownMenu({
   toggleUserDropdownMenu = (f) => f,
@@ -41,11 +41,11 @@ export default function UserDropdownMenu({
     }
   };
   return (
-    <div className={styles.userDropdownMenu}>
-      <div className={styles.title}>
-        <div className={styles.account}>Account</div>
+    <div className={styles.dropdownMenus}>
+      <div className={styles.header}>
+        <div className={styles.title}>Account</div>
         <button
-          type="bytton"
+          type="button"
           onClick={toggleUserDropdownMenu}
           className={styles.closeButton}
         >

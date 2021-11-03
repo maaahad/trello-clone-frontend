@@ -1,5 +1,5 @@
 // react
-
+import React, { useRef } from "react";
 // nextjs
 import Image from "next/image";
 
@@ -50,7 +50,8 @@ function Activities() {
   );
 }
 
-export default function LeftNav({ toggleCreateDropdownMenu = (f) => f }) {
+export default function LeftNav({ onCreateClick = (f) => f }) {
+  const createRef = useRef();
   return (
     <div className={styles.leftNavContainer}>
       <button type="button" className={styles.menuButton}>
@@ -61,9 +62,10 @@ export default function LeftNav({ toggleCreateDropdownMenu = (f) => f }) {
       </div>
       <Activities />
       <button
+        ref={createRef}
         type="button"
         className={styles.createButton}
-        onClick={toggleCreateDropdownMenu}
+        onClick={(event) => onCreateClick(createRef)}
       >
         <BiPlus />
       </button>

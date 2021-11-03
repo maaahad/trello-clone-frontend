@@ -1,6 +1,6 @@
 // import
 // react
-import React, { useReducer } from "react";
+import React, { useReducer, useRef } from "react";
 
 // react icons
 // nextjs
@@ -17,14 +17,7 @@ import CreateDropdownMenu from "./createDropdownMenu";
 // sass styles
 import styles from "../../styles/header/nav.module.sass";
 
-// react-redux
-import { useSelector } from "react-redux";
-
-//
-import { selectCurrentUser } from "../user/userSlice";
-
 // || we need a hook for toggle
-
 const useDropdown = (initial = false) => {
   const [display, toggleDisplay] = useReducer((display) => !display, initial);
   return [display, toggleDisplay];
@@ -32,19 +25,41 @@ const useDropdown = (initial = false) => {
 
 export default function Nav() {
   const [displayUserDropdownMenu, toggleUserDropdownMenu] = useDropdown();
-  const [displayCreateDropdownMenu, toggleCreateDropdownMenu] = useDropdown();
+  const [displayCreateDropdownMenu, toggleCreateDropdownMenu] =
+    useDropdown(true);
+
+  // we need to make this ref available all the time
+  const createSectionRef = useRef();
+
+  const onCreateClick = (ref) => {
+    // set up the position of modal
+    const { left } = ref.current.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const rightSpace = viewportWidth - left;
+    if (rightSpace >= 304) {
+      createSectionRef.current.style.left = `${left}px`;
+    } else {
+      createSectionRef.current.style.left = 0;
+    }
+    // display the modal
+    // toggleCreateDropdownMenu();
+  };
 
   return (
     <nav className={styles.nav}>
-      <LeftNav toggleCreateDropdownMenu={toggleCreateDropdownMenu} />
+      <LeftNav onCreateClick={onCreateClick} />
       <RightNav toggleUserDropdownMenu={toggleUserDropdownMenu} />
+      {/* the left and right position of following will be controlled by ref */}
       {displayUserDropdownMenu && (
         <section className={styles.userDropdownMenuContainer}>
           <UserDropdownMenu toggleUserDropdownMenu={toggleUserDropdownMenu} />
         </section>
       )}
       {displayCreateDropdownMenu && (
-        <section className={styles.createDropdownMenuContainer}>
+        <section
+          ref={createSectionRef}
+          className={styles.createDropdownMenuContainer}
+        >
           <CreateDropdownMenu
             toggleCreateDropdownMenu={toggleCreateDropdownMenu}
           />
