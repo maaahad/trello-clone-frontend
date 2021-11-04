@@ -1,6 +1,12 @@
 // import
 // react
-import React, { useReducer, useRef } from "react";
+import React, {
+  useState,
+  useReducer,
+  useRef,
+  useCallback,
+  useEffect,
+} from "react";
 
 // react icons
 // nextjs
@@ -11,54 +17,58 @@ import UserDropdownMenu from "./userDropdownMenu";
 import CreateDropdownMenu from "./createDropdownMenu";
 
 // in-house hooks
+import { useDropdownMenus } from "../../lib/hooks";
 
 // in-house libs
 
 // sass styles
 import styles from "../../styles/header/nav.module.sass";
 
-// || we need a hook for toggle
-const useDropdown = (initial = false) => {
-  const [display, toggleDisplay] = useReducer((display) => !display, initial);
-  return [display, toggleDisplay];
-};
-
 export default function Nav() {
-  const [displayUserDropdownMenu, toggleUserDropdownMenu] = useDropdown();
-  const [displayCreateDropdownMenu, toggleCreateDropdownMenu] =
-    useDropdown(true);
+  const [
+    displayCreateDropdownMenu,
+    createSectionStyle,
+    toggleCreateDropdownMenu,
+    onCreateClick,
+  ] = useDropdownMenus({ displayOption: false, initialStyle: {} });
 
-  // we need to make this ref available all the time
-  const createSectionRef = useRef();
+  const [
+    displayUserDropdownMenu,
+    userSectionStyle,
+    toggleUserDropdownMenu,
+    onUserClick,
+  ] = useDropdownMenus({ displayOption: false, initialStyle: {} });
 
-  const onCreateClick = (ref) => {
-    // set up the position of modal
-    const { left } = ref.current.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    const rightSpace = viewportWidth - left;
-    if (rightSpace >= 304) {
-      createSectionRef.current.style.left = `${left}px`;
-    } else {
-      createSectionRef.current.style.left = 0;
-    }
-    // display the modal
-    // toggleCreateDropdownMenu();
-  };
+  // controlling hiding the dropdown while clicking on
+  const onDropdownContainerClick = (event) => event.stopPropagation();
+
+  // adding a click handler on window object
+  useEffect(() => {
+    // if dropdown is not displaye, there is nothing to do
+    if (!displayUserDropdownMenu) return;
+    const toggleDropdown = () => toggleUserDropdownMenu();
+    window.addEventListener("click", toggleDropdown);
+    return () => window.removeEventListener("click", toggleDropdown);
+  }, [displayUserDropdownMenu]);
 
   return (
     <nav className={styles.nav}>
       <LeftNav onCreateClick={onCreateClick} />
-      <RightNav toggleUserDropdownMenu={toggleUserDropdownMenu} />
+      <RightNav onUserClick={onUserClick} />
       {/* the left and right position of following will be controlled by ref */}
       {displayUserDropdownMenu && (
-        <section className={styles.userDropdownMenuContainer}>
+        <section
+          className={styles.dropdownMenuContainer}
+          style={{ ...userSectionStyle }}
+          onClick={onDropdownContainerClick}
+        >
           <UserDropdownMenu toggleUserDropdownMenu={toggleUserDropdownMenu} />
         </section>
       )}
       {displayCreateDropdownMenu && (
         <section
-          ref={createSectionRef}
-          className={styles.createDropdownMenuContainer}
+          className={styles.dropdownMenuContainer}
+          style={{ ...createSectionStyle }}
         >
           <CreateDropdownMenu
             toggleCreateDropdownMenu={toggleCreateDropdownMenu}

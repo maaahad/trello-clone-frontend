@@ -61,11 +61,14 @@ export default function LeftNav({ onCreateClick = (f) => f }) {
         <Image src="/trello-logo.svg" layout="fill" objectFit="contain" />
       </div>
       <Activities />
+      {/* 304 is the width of the dropdown menu */}
       <button
         ref={createRef}
         type="button"
         className={styles.createButton}
-        onClick={(event) => onCreateClick(createRef)}
+        onClick={(event) =>
+          onCreateClick({ event, ref: createRef, dropdownWidth: 304 })
+        }
       >
         <BiPlus />
       </button>
