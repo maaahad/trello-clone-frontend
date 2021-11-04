@@ -11,6 +11,10 @@ import { useSelector } from "react-redux";
 
 // thunk creator
 import { selectCurrentUser } from "../user/userSlice";
+
+// in-house component
+import UserDropdown from "./userDropdown";
+
 // in-houser hooks
 import { useInput } from "../../lib/hooks";
 
@@ -63,9 +67,14 @@ function FullSearch() {
   );
 }
 
-export default function RightNav({ onUserClick = (f) => f }) {
+export default function RightNav({
+  toggleDropdown = (f) => f,
+  onUserClick = (f) => f,
+}) {
   const currentUser = useSelector(selectCurrentUser);
   const userRef = useRef();
+
+  const dropdownComponent = <UserDropdown toggleDropdown={toggleDropdown} />;
 
   return (
     <div className={styles.rightNavContainer}>
@@ -88,7 +97,8 @@ export default function RightNav({ onUserClick = (f) => f }) {
         onClick={(event) =>
           onUserClick({
             event,
-            ref: userRef,
+            controllerRef: userRef,
+            newDropdown: dropdownComponent,
             dropdownWidth: 304,
             align: "right",
           })

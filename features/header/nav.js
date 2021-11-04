@@ -13,11 +13,9 @@ import React, {
 // in-house components
 import LeftNav from "./leftNav";
 import RightNav from "./rightNav";
-import UserDropdownMenu from "./userDropdownMenu";
-import CreateDropdownMenu from "./createDropdownMenu";
 
 // in-house hooks
-import { useDropdownMenus } from "../../lib/hooks";
+import { useDropdown } from "../../lib/hooks";
 
 // in-house libs
 
@@ -26,53 +24,41 @@ import styles from "../../styles/header/nav.module.sass";
 
 export default function Nav() {
   const [
-    displayCreateDropdownMenu,
-    createSectionStyle,
-    toggleCreateDropdownMenu,
-    onCreateClick,
-  ] = useDropdownMenus({ displayOption: false, initialStyle: {} });
-
-  const [
-    displayUserDropdownMenu,
-    userSectionStyle,
-    toggleUserDropdownMenu,
-    onUserClick,
-  ] = useDropdownMenus({ displayOption: false, initialStyle: {} });
+    displayDropdown,
+    dropdownStyle,
+    dropdownComponent,
+    toggleDropdown,
+    onDisplay,
+    reset,
+  ] = useDropdown({ displayOption: false, initialStyle: {} });
 
   // controlling hiding the dropdown while clicking on
   const onDropdownContainerClick = (event) => event.stopPropagation();
 
   // adding a click handler on window object
   useEffect(() => {
-    // if dropdown is not displaye, there is nothing to do
-    if (!displayUserDropdownMenu) return;
-    const toggleDropdown = () => toggleUserDropdownMenu();
-    window.addEventListener("click", toggleDropdown);
-    return () => window.removeEventListener("click", toggleDropdown);
-  }, [displayUserDropdownMenu]);
+    // if dropdown is not display, there is nothing to do
+    if (!displayDropdown) return;
+    const toggle = () => {
+      reset();
+      toggleDropdown();
+    };
+    window.addEventListener("click", toggle);
+    return () => window.removeEventListener("click", toggle);
+  }, [displayDropdown]);
 
   return (
     <nav className={styles.nav}>
-      <LeftNav onCreateClick={onCreateClick} />
-      <RightNav onUserClick={onUserClick} />
+      <LeftNav onCreateClick={onDisplay} toggleDropdown={toggleDropdown} />
+      <RightNav onUserClick={onDisplay} toggleDropdown={toggleDropdown} />
       {/* the left and right position of following will be controlled by ref */}
-      {displayUserDropdownMenu && (
+      {displayDropdown && (
         <section
           className={styles.dropdownMenuContainer}
-          style={{ ...userSectionStyle }}
+          style={{ ...dropdownStyle }}
           onClick={onDropdownContainerClick}
         >
-          <UserDropdownMenu toggleUserDropdownMenu={toggleUserDropdownMenu} />
-        </section>
-      )}
-      {displayCreateDropdownMenu && (
-        <section
-          className={styles.dropdownMenuContainer}
-          style={{ ...createSectionStyle }}
-        >
-          <CreateDropdownMenu
-            toggleCreateDropdownMenu={toggleCreateDropdownMenu}
-          />
+          {dropdownComponent}
         </section>
       )}
     </nav>

@@ -5,18 +5,16 @@ import { FaTrello, FaSuitcase } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 
 // sass styles
-import styles from "../../styles/header/dropdownMenus.module.sass";
+import styles from "../../styles/header/dropdown.module.sass";
 
-export default function CreateDropdownMenu({
-  toggleCreateDropdownMenu = (f) => f,
-}) {
+export default function CreateDropdown({ toggleDropdown = (f) => f }) {
   return (
     <nav className={styles.dropdownMenus}>
       <div className={styles.header}>
         <div className={styles.title}>Create</div>
         <button
           type="button"
-          onClick={toggleCreateDropdownMenu}
+          onClick={toggleDropdown}
           className={styles.closeButton}
         >
           <BiX />

@@ -8,6 +8,9 @@ import Image from "next/image";
 import { BiPlus } from "react-icons/bi";
 import { VscChevronDown } from "react-icons/vsc";
 
+// in-house component
+import CreateDropdown from "./createDropdown";
+
 // sass styles
 import styles from "../../styles/header/leftNav.module.sass";
 
@@ -50,8 +53,12 @@ function Activities() {
   );
 }
 
-export default function LeftNav({ onCreateClick = (f) => f }) {
+export default function LeftNav({
+  toggleDropdown = (f) => f,
+  onCreateClick = (f) => f,
+}) {
   const createRef = useRef();
+  const dropdownComponent = <CreateDropdown toggleDropdown={toggleDropdown} />;
   return (
     <div className={styles.leftNavContainer}>
       <button type="button" className={styles.menuButton}>
@@ -67,7 +74,12 @@ export default function LeftNav({ onCreateClick = (f) => f }) {
         type="button"
         className={styles.createButton}
         onClick={(event) =>
-          onCreateClick({ event, ref: createRef, dropdownWidth: 304 })
+          onCreateClick({
+            event,
+            controllerRef: createRef,
+            newDropdown: dropdownComponent,
+            dropdownWidth: 304,
+          })
         }
       >
         <BiPlus />
