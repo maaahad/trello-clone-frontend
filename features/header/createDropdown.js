@@ -1,5 +1,5 @@
 // react icon// react icons
-import { BiX, BiShoppingBag } from "react-icons/bi";
+import { BiX } from "react-icons/bi";
 import { FaTrello, FaSuitcase } from "react-icons/fa";
 
 import { FiUsers } from "react-icons/fi";
