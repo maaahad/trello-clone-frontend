@@ -56,9 +56,18 @@ function Activities() {
 export default function LeftNav({
   toggleDropdown = (f) => f,
   onCreateClick = (f) => f,
+  onDisplayModal = (f) => f,
+  toggleModal = (f) => f,
 }) {
   const createRef = useRef();
-  const dropdownComponent = <CreateDropdown toggleDropdown={toggleDropdown} />;
+  const dropdownComponent = (
+    <CreateDropdown
+      toggleDropdown={toggleDropdown}
+      onDisplayModal={onDisplayModal}
+      toggleModal={toggleModal}
+    />
+  );
+
   return (
     <div className={styles.leftNavContainer}>
       <button type="button" className={styles.menuButton}>

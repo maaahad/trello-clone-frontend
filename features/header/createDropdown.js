@@ -4,10 +4,17 @@ import { FaTrello, FaSuitcase } from "react-icons/fa";
 
 import { FiUsers } from "react-icons/fi";
 
+//  inhouse component
+import CreateWorkspaceForm from "./createWorkspaceForm";
+
 // sass styles
 import styles from "../../styles/header/dropdown.module.sass";
 
-export default function CreateDropdown({ toggleDropdown = (f) => f }) {
+export default function CreateDropdown({
+  toggleDropdown = (f) => f,
+  onDisplayModal = (f) => f,
+  toggleModal = (f) => f,
+}) {
   return (
     <nav className={styles.dropdownMenus}>
       <div className={styles.header}>
@@ -39,7 +46,16 @@ export default function CreateDropdown({ toggleDropdown = (f) => f }) {
           </button>
           <p>Get started faster with a board template.</p>
         </div>
-        <div>
+        <div
+          onClick={(event) =>
+            onDisplayModal({
+              event,
+              newModalContent: (
+                <CreateWorkspaceForm toggleModal={toggleModal} />
+              ),
+            })
+          }
+        >
           <button type="button">
             <FiUsers /> Create Workspace
           </button>

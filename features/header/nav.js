@@ -15,7 +15,7 @@ import LeftNav from "./leftNav";
 import RightNav from "./rightNav";
 
 // in-house hooks
-import { useDropdown } from "../../lib/hooks";
+import { useDropdown, useModal } from "../../lib/hooks";
 
 // in-house libs
 
@@ -23,6 +23,7 @@ import { useDropdown } from "../../lib/hooks";
 import styles from "../../styles/header/nav.module.sass";
 
 export default function Nav() {
+  // this is related to the dropdown
   const [
     displayDropdown,
     dropdownStyle,
@@ -31,6 +32,11 @@ export default function Nav() {
     onDisplay,
     reset,
   ] = useDropdown({ displayOption: false, initialStyle: {} });
+
+  // This is related to modal
+  const [displayModal, toggleModal, modalContent, onDisplayModal] = useModal({
+    hideController: toggleDropdown,
+  });
 
   // controlling hiding the dropdown while clicking on
   const onDropdownContainerClick = (event) => event.stopPropagation();
@@ -49,7 +55,12 @@ export default function Nav() {
 
   return (
     <nav className={styles.nav}>
-      <LeftNav onCreateClick={onDisplay} toggleDropdown={toggleDropdown} />
+      <LeftNav
+        onCreateClick={onDisplay}
+        toggleDropdown={toggleDropdown}
+        onDisplayModal={onDisplayModal}
+        toggleModal={toggleModal}
+      />
       <RightNav onUserClick={onDisplay} toggleDropdown={toggleDropdown} />
       {/* the left and right position of following will be controlled by ref */}
       {displayDropdown && (
@@ -59,6 +70,12 @@ export default function Nav() {
           onClick={onDropdownContainerClick}
         >
           {dropdownComponent}
+        </section>
+      )}
+      {/* modal */}
+      {displayModal && (
+        <section className={styles.modalContainer} onClick={toggleModal}>
+          {modalContent}
         </section>
       )}
     </nav>

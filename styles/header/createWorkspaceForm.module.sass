@@ -1,0 +1,25 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "../theme"
+
+.formContainer
+    margin-block-start: 65px
+    height: auto
+    background-color: theme.$bg-primary
+    // <= 520px
+    width: calc(100vw - 50px)
+
+.header
+    width: 100%
+    height: 280px
+    background-color: #e4f7fa
+    background-image: url("/user/create-workspace-header.jpg")
+    background-repeat: no-repeat
+    background-size: contain
+    background-position: top 40px center
+
+// --------------------------------------------------
+// media condition
+@media screen and ( min-width:  521px)
+    .formContainer
+        width: 475px
