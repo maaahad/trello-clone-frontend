@@ -41,7 +41,131 @@
         color: theme.$text-h3-subtitle
 
 .workspaceForm
+    // we need relative position to be able to 
+    // position custom select option relative to this container
+    position: relative
     padding: 20px
+    color: theme.$trello-text-blackish
+
+    label
+        color: inherit
+        display: block
+        font-size: 12px
+        font-weight: 700
+        line-height: 1.33
+        margin-block-end: 4px
+        text-align: left
+
+.additionalInputInfo
+    display: block
+    color: theme.$text-color-secondary
+    font-size: 12px
+    font-weight: 400
+    line-height: 1.6
+    margin-block-end: 12px
+    text-align: left
+
+.optional
+    color: theme.$text-color-secondary
+    font-size: 12px
+    font-weight: 100
+
+.formHeader
+    & > h3
+        color: inherit
+        font-size: 24px
+        font-weight: 600
+        line-height: 1.25
+        letter-spacing: -0.01em
+        text-align: center
+        margin: 12px 0
+
+    & > p
+        margin: 12px auto 24px
+        color: theme.$text-color-secondary
+        font-size: 18px
+        font-weight: 400
+        line-height: 1.2
+        text-align: center
+
+.workspaceTitle
+    input
+        display: block
+        margin-block-end: 8px
+        height: 48px
+        width: 100%
+        padding: 5px 10px
+        background-color: theme.$bg-account
+        border: none
+        outline: none
+        color: theme.$text-h3-subtitle
+        @include theme.form-input-inset-shadow
+        border-radius: 3px
+
+        &:hover
+            background-color: theme.$bg-create-hover
+
+        &:focus
+            @include theme.form-input-hover-inset-shadow
+            background-color: theme.$trello-white
+
+.customSelect
+    @include theme.form-input-inset-shadow
+    color: theme.$text-h3-subtitle
+    width: 100%
+    height: 36px
+    background-color: theme.$bg-account
+    border-radius: 3px
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    justify-content: space-between
+    padding: 5px 10px
+    margin-block-end: 20px
+
+    &:hover
+        background-color: theme.$bg-create-hover
+
+    &:focus
+        @include theme.form-input-hover-inset-shadow
+        background-color: theme.$trello-white
+        outline: none
+    & svg
+        color: inherit
+        width: 20px
+        height: 20px
+
+.selectOptions
+    position: absolute
+    height: 300px
+    // top and left will be controlled by JS
+    width: calc(100% - 40px)
+    margin-inline-start: 20px
+    margin-block-start: -10px
+
+    display: flex
+    flex-flow: column nowrap
+    align-items: stretch
+    justify-content: space-between
+    padding: 5px 0
+
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px
+    background-color: theme.$trello-white
+    border-radius: 3px
+
+    & > * + *
+        margin-block-start: 10px
+
+    & > div
+        color: inherit
+        flex: 1
+        padding-inline-start: 10px
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        &:hover
+            cursor: pointer
+            background-color: theme.$bg-create-hover
 // --------------------------------------------------
 // media condition
 @media screen and ( min-width:  521px)

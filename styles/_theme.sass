@@ -61,6 +61,7 @@ $bg-account: #fafbfc
 $bg-account-aside-left-anchor-hover: #e6e9ed
 $bg-account-aside-left-anchor-active: #e4f0f6
 $account-text-special-purple: #CD8DE5
+$bg-create-hover: #ebecf0
 
 // card bg
 $bg-account-board-card: #0000004d
@@ -120,6 +121,12 @@ $zindex-modal: 112
 
 @mixin button-shadow
     box-shadow: rgba(0,0,0,0.2) 1px 1px 5px 0
+
+@mixin form-input-inset-shadow
+    box-shadow: inset 0 0 0 2px #dfe1e6
+
+@mixin form-input-hover-inset-shadow
+    box-shadow: inset 0 0 0 2px #0079bf
 // gradient
 @mixin landing-hero-linear-grad
     background: $bg-landing-primary
