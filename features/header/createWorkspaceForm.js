@@ -8,7 +8,7 @@ import { BiX } from "react-icons/bi";
 
 import { VscChevronDown } from "react-icons/vsc";
 // in-house hooks
-import { useInput } from "../../lib/hooks";
+import { useInput, useDropdownComponent } from "../../lib/hooks";
 // sass styles
 import styles from "../../styles/header/createWorkspaceForm.module.sass";
 
@@ -22,11 +22,19 @@ const typeSelectOptions = [
   "Marketing",
 ];
 
-function SelectOptions({ style, toggleDisplayOptions = (f) => f }) {
+function SelectOptions({
+  position,
+  toggleDisplaySelectOptions = (f) => f,
+  setSelectValue = (f) => f,
+}) {
+  const onSelect = (value) => {
+    setSelectValue(value);
+    toggleDisplaySelectOptions();
+  };
   return (
-    <div style={{ ...style }} className={styles.selectOptions}>
+    <div style={{ ...position }} className={styles.selectOptions}>
       {typeSelectOptions.map((option, index) => (
-        <div key={index} onClick={toggleDisplayOptions}>
+        <div key={index} onClick={() => onSelect(option)}>
           {option}
         </div>
       ))}
@@ -36,37 +44,45 @@ function SelectOptions({ style, toggleDisplayOptions = (f) => f }) {
 
 function CustomSelect() {
   const selectRef = useRef();
-  const selectOptionsRef = useRef();
-  const [optionsComponent, setOptionsComponent] = useState(null);
-  // || todo : need useModal like hooks
-  const [displayOptions, toggleDisplayOptions] = useReducer(
-    (displayOptions) => {
-      if (displayOptions) {
-        setOptionsComponent(null);
-      } else {
-        const { bottom } = selectRef.current.getBoundingClientRect();
-        setOptionsComponent(
-          <SelectOptions
-            toggleDisplayOptions={toggleDisplayOptions}
-            style={{ top: `${bottom}px`, left: 0 }}
-          />
-        );
-      }
-      return !displayOptions;
-    },
-    false
-  );
+  const [selectOptionsPosition, setSelectOptionsPosition] = useState(null);
+  const [selectValue, setSelectValue] = useState("Choose...");
+
+  // custom hook to controll the display of SelectiOptions
+  const [
+    displaySelectOptions,
+    renderComponent,
+    toggleDisplaySelectOptions,
+    onControllerClick,
+    reset,
+  ] = useDropdownComponent();
 
   const onLabelClick = () => {
     selectRef.current.focus();
   };
 
-  //   const onSelectControllerClick = (event) => {
-  //     event.stopPropagation();
-  //     console.log(selectRef.current.getBoundingClientRect());
-  //     // selectRef.current.nextElementSidbling.style.color = "red";
-  //     toggleDisplayOptions();
-  //   };
+  //   setting up the position for the selectOptions
+  useEffect(() => {
+    if (!displaySelectOptions) return;
+
+    const { bottom } = selectRef.current.getBoundingClientRect();
+    // console.log(bottom);
+    setSelectOptionsPosition({ top: `${bottom}px`, left: 0 });
+  }, [displaySelectOptions]);
+
+  //   selectOptions
+  const selectOptions = (
+    <SelectOptions
+      toggleDisplaySelectOptions={toggleDisplaySelectOptions}
+      position={selectOptionsPosition}
+      setSelectValue={setSelectValue}
+    />
+  );
+  const onSelectControllerClick = (event) => {
+    // event.stopPropagation();
+    onControllerClick(event, selectOptions);
+  };
+
+  //   console.log(displaySelectOptions, renderComponent);
 
   return (
     <>
@@ -77,23 +93,22 @@ function CustomSelect() {
         id="workspaceType"
         ref={selectRef}
         tabIndex={0}
-        onClick={toggleDisplayOptions}
+        onClick={onSelectControllerClick}
         className={styles.customSelect}
       >
-        <div>Choose...</div>
+        <div>{selectValue}</div>
         <div>
           <VscChevronDown />
         </div>
       </div>
       {/* Select options */}
-      {optionsComponent}
+      {displaySelectOptions && renderComponent}
     </>
   );
 }
 
 export default function CreateWorkspaceForm({ toggleModal = (f) => f }) {
   const [titleProps, ,] = useInput("");
-  const [workspaceTypeProps, ,] = useInput("choose");
   const [workspaceDescriptionProps, ,] = useInput("");
 
   const onFormContainerClick = (event) => event.stopPropagation();
@@ -135,17 +150,6 @@ export default function CreateWorkspaceForm({ toggleModal = (f) => f }) {
 
         <div className={styles.workspaceType}>
           <CustomSelect />
-          {/* need a separate component will all the possible options */}
-          {/* <select
-            id="workspaceType"
-            value={workspaceTypeProps.value}
-            onChange={workspaceTypeProps.onChange}
-          >
-            <option value="choose">Choose...</option>
-            <option value="small-business">Small Business</option>
-            <option value="education">Educations</option>
-            <option value="marketing">Marketing</option>
-          </select> */}
         </div>
 
         <div className={styles.workspaceDescription}>
@@ -163,7 +167,13 @@ export default function CreateWorkspaceForm({ toggleModal = (f) => f }) {
             Get your members on board with a few words about your Workspace.
           </span>
         </div>
-        <button type="submit">Continue</button>
+        <button
+          type="button"
+          className={styles.continueButton}
+          disabled={false}
+        >
+          Continue
+        </button>
       </form>
     </div>
   );

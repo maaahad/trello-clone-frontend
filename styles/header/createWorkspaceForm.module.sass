@@ -166,6 +166,59 @@
         &:hover
             cursor: pointer
             background-color: theme.$bg-create-hover
+
+.workspaceDescription
+    textarea
+        @include theme.form-input-inset-shadow
+        width: 100%
+        height: 136px
+        padding: 5px 10px
+        margin-block-end: 10px
+        resize: none
+        border: none
+        outline: none
+        border-radius: 3px
+
+        &:hover
+            background-color: theme.$bg-create-hover
+
+        &:focus
+            @include theme.form-input-hover-inset-shadow
+            background-color: theme.$trello-white
+
+.continueButton
+    width: 100%
+    height: 48px
+    border-radius: 3px
+    border: none
+    outline: none
+    font-size: 14px
+    line-height: 1.5
+    font-weight: 400
+    padding: 6px 12px
+    backgorund-color: theme.$bg-workspace-continue-button
+
+    // color: theme.$trello-white
+    // background-color: #0079bf
+
+    // &:hover
+    //     cursor: pointer
+    //     background-color: theme.$bg-nav-blue
+// we change the background color in JS
+.continueButton:enabled
+    font-size: 14px
+    color: theme.$trello-white
+    backgorund-color: theme.$text-account-aside-left-anchor-active
+
+.continueButton:enabled:hover
+    cursor: pointer
+    backgorund-color: theme.$bg-nav-blue
+
+.continueButton:disabled, .continueButton:disabled:hover, .continueButton:disabled:active
+    backgorund-color: theme.$bg-workspace-continue-button
+    color: theme.$text-color-button-workspace
+    cursor: not-allowed
+
 // --------------------------------------------------
 // media condition
 @media screen and ( min-width:  521px)
