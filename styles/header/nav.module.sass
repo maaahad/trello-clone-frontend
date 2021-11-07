@@ -20,9 +20,28 @@
 .rightNav
     justify-content: flex-end
 
-.userDropdownMenuContainer
+.dropdownMenuContainer
     position: fixed
     top: 49px
-    right: 5px
     background-color: theme.$trello-white
     @include theme.dropdown-menu-shadow
+
+// modal container
+.modalContainer
+    min-width: 100vw
+    min-height: 100vh
+    height: 100vh
+    background-color: theme.$bg-modal
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 200
+    display: flex
+    flex-flow: row nowrap
+    align-items: flex-start
+    justify-content: flex-start
+    overflow-y: auto
+
+@media screen and (min-width: 751px)
+    .modalContainer
+        justify-content: center

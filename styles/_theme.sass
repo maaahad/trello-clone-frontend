@@ -17,13 +17,14 @@ $trello-form-text-secondary: #253858
 // button-color
 $text-color-button-inactive: #8c8c8c
 $text-color-button: #505f79
+$text-color-button-workspace: #a5adba
 
 // anchor color
 $anchor-trello-signature: #298FCA
 $anchor-trello-quicklinks: #5E6C84
 
 // background-color
-$bg-primary: #fff
+$bg-primary: #ffffff
 $bg-secondary: #4d4d4d
 $bg-warning: #faf3c0
 $bg-landing-primary: #fff
@@ -61,6 +62,8 @@ $bg-account: #fafbfc
 $bg-account-aside-left-anchor-hover: #e6e9ed
 $bg-account-aside-left-anchor-active: #e4f0f6
 $account-text-special-purple: #CD8DE5
+$bg-create-hover: #ebecf0
+$bg-workspace-continue-button: #f5f6f7
 
 // card bg
 $bg-account-board-card: #0000004d
@@ -80,6 +83,9 @@ $bg-nav-blue: #026aa7
 // svg color 
 $svg-color-grey: #c1c7d0
 
+// modal 
+$bg-modal: rgba(0,0,0,.6)
+
 // typography
 
 // shadows
@@ -95,6 +101,7 @@ $zindex-nav: 111
 $zindex-form: 1
 $zindex-background: -1
 $zindex-content: 100
+$zindex-modal: 112
 
 // --------------------------------------------------
 // mixins
@@ -116,6 +123,12 @@ $zindex-content: 100
 
 @mixin button-shadow
     box-shadow: rgba(0,0,0,0.2) 1px 1px 5px 0
+
+@mixin form-input-inset-shadow
+    box-shadow: inset 0 0 0 2px #dfe1e6
+
+@mixin form-input-hover-inset-shadow
+    box-shadow: inset 0 0 0 2px #0079bf
 // gradient
 @mixin landing-hero-linear-grad
     background: $bg-landing-primary

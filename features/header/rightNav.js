@@ -11,6 +11,10 @@ import { useSelector } from "react-redux";
 
 // thunk creator
 import { selectCurrentUser } from "../user/userSlice";
+
+// in-house component
+import UserDropdown from "./userDropdown";
+
 // in-houser hooks
 import { useInput } from "../../lib/hooks";
 
@@ -63,29 +67,15 @@ function FullSearch() {
   );
 }
 
-export default function RightNav({ toggleUserDropdownMenu = (f) => f }) {
-  // const dispatch = useDispatch();
+export default function RightNav({
+  toggleDropdown = (f) => f,
+  onUserClick = (f) => f,
+}) {
   const currentUser = useSelector(selectCurrentUser);
-  // successful logout will automatically reset state.user along with state.user.status
-  // const fetchStatus = useSelector((state) => state.user.status);
-  // const router = useRouter();
+  const userRef = useRef();
 
-  // const onLogout = (event) => {
-  //   const rootUrl = process.env.NEXT_PUBLIC_TRELLO_BACKEND_URL_ROOT;
-  //   // it will do only the previous fetchStatus was succeeded
-  //   if (fetchStatus === "succeeded") {
-  //     dispatch(
-  //       logout({
-  //         url: `${rootUrl}/account/user/logout/${currentUser._id}`,
-  //         method: "put",
-  //       })
-  //     ).then(() => {
-  //       router.push({
-  //         pathname: "/",
-  //       });
-  //     });
-  //   }
-  // };
+  const dropdownComponent = <UserDropdown toggleDropdown={toggleDropdown} />;
+
   return (
     <div className={styles.rightNavContainer}>
       <button type="button" className={styles.searchButton}>
@@ -101,9 +91,18 @@ export default function RightNav({ toggleUserDropdownMenu = (f) => f }) {
         <BiBell />
       </button>
       <button
+        ref={userRef}
         type="button"
         className={styles.userButton}
-        onClick={toggleUserDropdownMenu}
+        onClick={(event) =>
+          onUserClick({
+            event,
+            controllerRef: userRef,
+            newDropdown: dropdownComponent,
+            dropdownWidth: 304,
+            align: "right",
+          })
+        }
       >
         {/* || todo : The following should be initial of each name, not the initial of firstname */}
         {currentUser.name.slice(0, 2).toUpperCase()}

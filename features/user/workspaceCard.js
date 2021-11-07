@@ -5,7 +5,7 @@ import Link from "next/link";
 
 // react icons
 import { BiUser, BiTable, BiCog, BiShoppingBag } from "react-icons/bi";
-import { FaTrello, FaTable } from "react-icons/fa";
+import { FaTrello, FaTable, FaSuitcase } from "react-icons/fa";
 
 // in-house components
 import BoardCard from "./boardCard";
@@ -48,7 +48,7 @@ export default function WorkspaceCard({ workspace }) {
           </Link>
           <Link href="/" passHref>
             <a>
-              <BiShoppingBag />
+              <FaSuitcase />
               <span>Upgrade</span>
             </a>
           </Link>

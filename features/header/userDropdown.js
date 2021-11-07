@@ -13,11 +13,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser, logout } from "../user/userSlice";
 
 // sass styles
-import styles from "../../styles/header/userDropdownMenu.module.sass";
+import styles from "../../styles/header/dropdown.module.sass";
 
-export default function UserDropdownMenu({
-  toggleUserDropdownMenu = (f) => f,
-}) {
+export default function UserDropdown({ toggleDropdown = (f) => f }) {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   // successful logout will automatically reset state.user along with state.user.status
@@ -41,12 +39,12 @@ export default function UserDropdownMenu({
     }
   };
   return (
-    <div className={styles.userDropdownMenu}>
-      <div className={styles.title}>
-        <div className={styles.account}>Account</div>
+    <div className={styles.dropdownMenus}>
+      <div className={styles.header}>
+        <div className={styles.title}>Account</div>
         <button
-          type="bytton"
-          onClick={toggleUserDropdownMenu}
+          type="button"
+          onClick={toggleDropdown}
           className={styles.closeButton}
         >
           <BiX />

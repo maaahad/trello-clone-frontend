@@ -1,5 +1,5 @@
 // react
-
+import React, { useRef } from "react";
 // nextjs
 import Image from "next/image";
 
@@ -7,6 +7,9 @@ import Image from "next/image";
 
 import { BiPlus } from "react-icons/bi";
 import { VscChevronDown } from "react-icons/vsc";
+
+// in-house component
+import CreateDropdown from "./createDropdown";
 
 // sass styles
 import styles from "../../styles/header/leftNav.module.sass";
@@ -50,7 +53,21 @@ function Activities() {
   );
 }
 
-export default function LeftNav() {
+export default function LeftNav({
+  toggleDropdown = (f) => f,
+  onCreateClick = (f) => f,
+  onDisplayModal = (f) => f,
+  toggleModal = (f) => f,
+}) {
+  const createRef = useRef();
+  const dropdownComponent = (
+    <CreateDropdown
+      toggleDropdown={toggleDropdown}
+      onDisplayModal={onDisplayModal}
+      toggleModal={toggleModal}
+    />
+  );
+
   return (
     <div className={styles.leftNavContainer}>
       <button type="button" className={styles.menuButton}>
@@ -60,7 +77,20 @@ export default function LeftNav() {
         <Image src="/trello-logo.svg" layout="fill" objectFit="contain" />
       </div>
       <Activities />
-      <button type="button" className={styles.createButton}>
+      {/* 304 is the width of the dropdown menu */}
+      <button
+        ref={createRef}
+        type="button"
+        className={styles.createButton}
+        onClick={(event) =>
+          onCreateClick({
+            event,
+            controllerRef: createRef,
+            newDropdown: dropdownComponent,
+            dropdownWidth: 304,
+          })
+        }
+      >
         <BiPlus />
       </button>
     </div>
