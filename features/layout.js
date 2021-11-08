@@ -34,8 +34,6 @@ export default function Layout({
       {/* change main to dev */}
       {/* use main in page component */}
       <main>{children}</main>
-
-      {/* footer : except for login and signup form */}
     </div>
   );
 }

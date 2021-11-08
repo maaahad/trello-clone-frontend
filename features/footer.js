@@ -13,7 +13,7 @@ import { VscChevronDown } from "react-icons/vsc";
 import styles from "../styles/footer.module.sass";
 
 // Should be moved to its's own file
-function LanguageSelect() {
+export function LanguageSelect() {
   const [languageProps, ,] = useInput("english-uk");
   return (
     <select value={languageProps.value} onChange={languageProps.onChange}>

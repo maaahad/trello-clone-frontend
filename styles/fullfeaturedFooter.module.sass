@@ -1,0 +1,117 @@
+// --------------------------------------------------
+// using partials (theme)
+@use "theme"
+
+.fullfeaturedFooter
+    width: 100%
+
+// top footer
+.topFooterContainer
+    padding: 0 10%
+    & > * + *
+        margin-block-start: 20px
+    .trelloLogoContainer
+        width: 100%
+        height: 25px
+        .trelloLogo
+            position: relative
+            width: 125px
+            height: 100%
+
+    .featuresContainer
+        display: flex
+        flex-flow: row wrap
+        align-items: center
+        justify-content: center
+
+        & > *
+            margin: 10px
+
+.featuerLinks
+    flex: 1 170px
+    height: 160px
+    color: theme.$text-fullfeatured-footer
+    display: flex
+    flex-flow: column nowrap
+    align-items: center
+    justify-content: flex-start
+    & > h5
+        text-transform: uppercase
+        font-size: 18px
+        line-height: 1.1
+        font-weight: 800
+        color: inherit
+        margin: 0
+
+    & > ul
+        list-style: none
+        padding: 0
+        margin-block-start: 10px
+
+        & > li
+            text-align: center
+        & a
+            color: inherit
+            font-size: 16px
+            line-height: 1.5
+            font-weight: 400
+            text-transform: capitalize
+
+            &:hover
+                text-decoration: .5px solid underline
+
+// bottom 
+.bottomFooterContainer
+    border-top: 1px solid #eaeaea
+    padding: 20px 10% 0 10%
+    display: flex
+    flex-flow: row wrap
+    align-items: center
+    justify-content: space-between
+
+    .language
+        display: flex
+        flex-flow: row nowrap
+        align-items: center
+        justify-content: flex-start
+
+        & > * + *
+            margin-inline-start: -5px
+
+        & > svg
+            color: #6c798f
+            width: 18px
+            height: 18px
+
+        .languageSelectionContainer
+            height: 44px
+            // border: 2px solid theme.$border-select-grey
+            color: theme.$trello-form-text-primary
+            width: 125px
+            display: flex
+            flex-flow: row nowrap
+            align-items: center
+            justify-content: center
+            padding: 0 5px 0 8px
+            & > select
+                flex: 1
+                -moz-appearance: none
+                -webkit-appearance: none
+                appearance: none
+                font-size: 14px
+                font-weight: 300
+                height: 100%
+                background-color: transparent
+                outline: none
+                border: none
+                color: inherit
+
+            & > svg
+                width: 18px
+                height: 18px
+                color: inherit
+// --------------------------------------------------
+// media condition
+// @media screen and (min-width: 992px)
+//     .topFooterContainer
+//         flex-flow: row nowrap

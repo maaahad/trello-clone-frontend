@@ -11,6 +11,7 @@ import Image from "next/image";
 import Nav from "../features/landing/nav";
 import Hero from "../features/landing/hero";
 import TrelloProduct from "../features/landing/trello-product";
+import FullfeaturedFooter from "../features/fullfeaturedFooter";
 
 // sass styles
 import styles from "../styles/home.module.sass";
@@ -41,7 +42,9 @@ export default function Home() {
       </main>
 
       {/* footer */}
-      <footer className={styles.footer}>This is footer</footer>
+      <footer className={styles.footer}>
+        <FullfeaturedFooter />
+      </footer>
     </div>
   );
 }
